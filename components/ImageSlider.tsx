@@ -7,11 +7,15 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import Produits from '../app/dataMazou.json'
 import { cn } from '@/config/utils'
 import { ChevronsLeft, ChevronsRight } from 'lucide-react'
+import { ProductImage } from '../generated/prisma/client'
 
 type ArrowProps = {
   onClick: () => void
   label: string
   arrow: 'left' | 'right'
+}
+type ProductImagesProps = {
+  contentImages: ProductImage[]
 }
 
 function ButtonSlider({ onClick, label, arrow }: ArrowProps) {
@@ -29,11 +33,10 @@ function ButtonSlider({ onClick, label, arrow }: ArrowProps) {
     </button>
   )
 }
-export default function ImageSlider() {
-  const item = Produits[0]
+export default function ImageSlider({ contentImages }: ProductImagesProps) {
   return (
     <Carousel
-      className="bg-gray-300"
+      className="bg-gray-300 max-w-[500px]"
       showThumbs={false}
       autoPlay
       infiniteLoop
@@ -55,13 +58,14 @@ export default function ImageSlider() {
         // )
       }
     >
-      {[...Array(3)].map((_, i) => (
+      {/* {[...Array(3)].map((_, i) => ( */}
+      {contentImages.map((item, i) => (
         <div key={i} className="flex justify-center">
           <Image
             isZoomed
             as={NextImage}
-            alt={item.title}
-            src={item.img[i]}
+            alt={'slider ' + i}
+            src={item.url}
             width={500}
             height={500}
             radius="none"

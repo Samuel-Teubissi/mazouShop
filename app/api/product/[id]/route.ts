@@ -34,7 +34,7 @@ export async function GET(
       )
     }
 
-    return NextResponse.json(product)
+    return NextResponse.json(product, { status: 200 })
   } catch (error) {
     return NextResponse.json({ error: 'Erreur serveur' }, { status: 404 })
   }

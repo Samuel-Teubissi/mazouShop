@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 
 import ImageSlider from '@/components/ImageSlider'
 import { Card, CardBody } from '@heroui/card'
@@ -8,10 +8,12 @@ import { marked } from 'marked'
 import { Button } from '@heroui/button'
 import Link from 'next/link'
 import { formatPrice } from '@/config/utils'
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import { Prisma, Product } from '@/generated/prisma'
-// import Typography from '@mui/material/Typography'
+import { prisma } from '@/lib/clientPrisma'
+import { notFound } from 'next/navigation'
 // import Breadcrumbs from '@mui/material/Breadcrumbs'
+// import Typography from '@mui/material/Typography'
 // import Link from '@mui/material/Link'
 
 type ProductWithCategory = Prisma.ProductGetPayload<{
@@ -28,34 +30,30 @@ export default async function Page({
 }: {
   params: Promise<{ productId: string }>
 }) {
-  const [product, setProduct] = useState<ProductWithCategory | null>(null)
+  // const [product, setProduct] = useState<ProductWithCategory | null>(null)
   const { productId } = await params
   // const searchParams = await props.searchParams
-  // const product = Produits[0]
 
-  // useEffect(() => {
-  //   fetch('/api/product/' + params.productId)
-  //     .then((res) => res.json())
-  //     .then((data) => setProduct(data))
-  // }, [params.productId])
+  const product: ProductWithCategory | null = await prisma.product.findUnique({
+    where: { id: parseInt(productId) },
+    include: {
+      images: true,
+      product_profits: true,
+      product_tags: true,
+      product_caracteristics: true,
+    },
+  })
 
-  console.log('productId', productId)
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const res = await fetch(`/api/product/${productId}`)
-      const data = await res.json()
-      setProduct(data)
-    }
-    fetchProduct()
-  }, [productId])
-
-  if (!product) return null
+  // if (!product) return null
+  if (!product) {
+    notFound()
+  }
 
   const htmlDescription = marked(product?.description)
 
   const newPrice = Number(product?.new_price)
   const oldPrice = Number(product?.old_price)
-  const promo = Math.round((newPrice * 100) / oldPrice)
+  const promo = Math.round(((oldPrice - newPrice) / oldPrice) * 100)
 
   return (
     <>
@@ -88,7 +86,7 @@ export default async function Page({
           </div>
           <div className="bg-white dark:bg-dark-div dark:text-dark-text md:p-5 space-y-2 flex flex-col lg:flex-row gap-4">
             <div className="w-full md:w-[500] h-[500] flex items-center bg-brand-primary-500/10 mx-auto">
-              <ImageSlider />
+              <ImageSlider contentImages={product.images} />
             </div>
             <div className="container-slider_body grow space-y-4 px-2">
               <div>
