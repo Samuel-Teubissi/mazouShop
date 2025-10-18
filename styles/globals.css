@@ -62,6 +62,36 @@
   @apply font-bold;
 }
 
+.dark .react-select__control {
+  @apply bg-gray-700 text-white;
+}
+.dark .react-select__multi-value {
+  @apply bg-dark-btn;
+}
+.dark .react-select__menu {
+  @apply bg-gray-700 border-dark-div2;
+}
+.dark .react-select__input-container {
+  @apply text-white;
+}
+.dark .react-select__option {
+  @apply text-white bg-gray-700 hover:bg-dark-btn;
+}
+.dark .react-select__indicator {
+  @apply hover:text-gray-400;
+}
+.dark .react-select__control--is-focused .react-select__dropdown-indicator,
+.dark .react-select__control--menu-is-open .react-select__dropdown-indicator {
+  @apply text-white;
+}
+.dark .react-select__multi-value__label {
+  @apply text-white;
+}
+
+[data-slot='helper-wrapper'] {
+  @apply mt-0.5;
+}
+
 /* .mz_access {
   @apply focus:ring-2 focus:ring-focus focus:ring-offset-2 focus:ring-offset-background;
 } */

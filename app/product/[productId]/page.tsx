@@ -1,3 +1,5 @@
+'use client'
+
 import ImageSlider from '@/components/ImageSlider'
 import { Card, CardBody } from '@heroui/card'
 import Produits from '../../dataMazou.json'
@@ -6,21 +8,55 @@ import { marked } from 'marked'
 import { Button } from '@heroui/button'
 import Link from 'next/link'
 import { formatPrice } from '@/config/utils'
+import { useEffect, useState } from 'react'
+import { Prisma, Product } from '@/generated/prisma'
 // import Typography from '@mui/material/Typography'
 // import Breadcrumbs from '@mui/material/Breadcrumbs'
 // import Link from '@mui/material/Link'
 
-export default async function Page(props: {
+type ProductWithCategory = Prisma.ProductGetPayload<{
+  include: {
+    images: true
+    product_profits: true
+    product_tags: true
+    product_caracteristics: true
+  }
+}>
+
+export default async function Page({
+  params,
+}: {
   params: Promise<{ productId: string }>
-  searchParams: Promise<Record<string, string | string[]>>
 }) {
-  const params = await props.params
-  const searchParams = await props.searchParams
-  const product = Produits[0]
-  const htmlDescription = marked(product.description)
-  const promo = Math.round(
-    (Number(product.new_price) * 100) / Number(product.old_price),
-  )
+  const [product, setProduct] = useState<ProductWithCategory | null>(null)
+  const { productId } = await params
+  // const searchParams = await props.searchParams
+  // const product = Produits[0]
+
+  // useEffect(() => {
+  //   fetch('/api/product/' + params.productId)
+  //     .then((res) => res.json())
+  //     .then((data) => setProduct(data))
+  // }, [params.productId])
+
+  console.log('productId', productId)
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const res = await fetch(`/api/product/${productId}`)
+      const data = await res.json()
+      setProduct(data)
+    }
+    fetchProduct()
+  }, [productId])
+
+  if (!product) return null
+
+  const htmlDescription = marked(product?.description)
+
+  const newPrice = Number(product?.new_price)
+  const oldPrice = Number(product?.old_price)
+  const promo = Math.round((newPrice * 100) / oldPrice)
+
   return (
     <>
       <div className="text-small text-gray-700 py-3 px-6 max-w-6xl mx-auto box-border dark:text-dark-text mt-[80px] lg:mt-auto">
@@ -62,11 +98,11 @@ export default async function Page(props: {
               </div>
               <div className="flex flex-col xs:flex-row lg:flex-col xl:flex-row gap-x-4 xl:items-center">
                 <span className="text-3xl font-black">
-                  {formatPrice(product.new_price)} FCFA
+                  {formatPrice(newPrice)} FCFA
                 </span>
                 <div className="flex gap-2 items-center">
                   <span className="line-through text-lg text-gray-700 dark:text-gray-300 order-2 sm:order-1">
-                    {formatPrice(product.old_price)} F
+                    {formatPrice(oldPrice)} F
                   </span>
                   <span className="mz_promotionBand order-1 sm:order-2">
                     -{promo}%
@@ -81,7 +117,7 @@ export default async function Page(props: {
                 <div className="text-gray-700 dark:text-gray-300 flex flex-wrap gap-x-4 gap-y-2 text-small">
                   {product.product_tags.map((tag, i) => (
                     <span key={i} className="underline cursor-default">
-                      {tag}
+                      {tag.label}
                     </span>
                   ))}
                 </div>
@@ -91,7 +127,7 @@ export default async function Page(props: {
                 <div className="border border-gray-200 dark:border-gray-700 w-full text-small">
                   {product.product_caracteristics.map((c, i) => (
                     <div key={i} className="odd:bg-brand-primary-400/15 p-4">
-                      {c}
+                      {c.label}
                     </div>
                   ))}
                 </div>
@@ -108,12 +144,12 @@ export default async function Page(props: {
           <div className="mz_container-bloc mz_description dark:text-dark-text border border-gray-200 dark:border-transparent">
             <h3>Pourquoi choisir notre produit ?</h3>
             <div>
-              {product.product_tags.map((d, i) => (
+              {product.product_profits.map((tag, i) => (
                 <div key={i} className="flex gap-4 items-center">
                   <span>
                     <img src="/images/CheckIcon.svg" alt="Icône de checklist" />
                   </span>
-                  <span>{d}</span>
+                  <span>{tag.label}</span>
                 </div>
               ))}
             </div>

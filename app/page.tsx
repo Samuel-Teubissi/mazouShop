@@ -15,20 +15,37 @@ import { Image } from '@heroui/image'
 import MazouCard from '@/components/MazouCard'
 import { TextEffect } from '@/components/motion-primitives/text-effect'
 import { motion } from 'framer-motion'
-import { forwardRef } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 import { TextLoop } from '@/components/motion-primitives/text-loop'
+import { PrismaClient } from '@/generated/prisma'
+import AllProducts from '@/components/AllProducts'
+import type { Prisma } from '@/generated/prisma/client'
 
 export default function Home() {
+  type ProductWithCategory = Prisma.ProductGetPayload<{
+    include: {
+      images: true
+      product_profits: true
+      product_tags: true
+      product_caracteristics: true
+    }
+  }>
+  const [productsResults, setProductsResults] = useState<ProductWithCategory[]>(
+    [],
+  )
+
+  useEffect(() => {
+    fetch('/api/products')
+      .then((res) => res.json())
+      .then((data) => setProductsResults(data))
+  }, [])
+
   interface BoxProps {
     children?: React.ReactNode
     className?: string
   }
   const Box = forwardRef<HTMLDivElement, BoxProps>(({ children }, ref) => {
-    return (
-      <div className="box" ref={ref}>
-        {children}
-      </div>
-    )
+    return <div ref={ref}>{children}</div>
   })
   const MotionBox = motion(Box)
   const mzAnimateTitle = {
@@ -60,16 +77,17 @@ export default function Home() {
     'juste en un clic',
     'sans prise de tête',
   ]
+
   return (
     <>
       <section className="flex flex-col gap-6 px-4 pb-10 md:pb-10 pt-[120px] lg:pt-[30px] items-center">
-        <div className="inline-block max-w-xl text-center justify-center">
+        <div className="inline-block max-w-xl text-center justify-center flex">
           <MotionBox
             variants={mzAnimateTitle}
             initial={'start'}
             animate={'end'}
           >
-            <span className={title()}>Bienvenue sur&nbsp;</span>
+            <span className={title({ size: 'lg' })}>Bienvenue sur&nbsp;</span>
             <span className="bg-gradient-to-br from-[#E44E4E] to-[#831f16] bg-clip-text text-transparent text-5xl lg:text-7xl tracking-tight inline font-black">
               Mazou&nbsp;
             </span>
@@ -110,18 +128,7 @@ export default function Home() {
       </section>
 
       <div className="mz_container">
-        <div className="mz_container-body px-3">
-          <div className="mz_Heading text-2xl md:text-3xl">SPORT</div>
-          <div className="w-full gap-x-1 gap-y-3 md:gap-3 items-center grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {[...Array(8)].map((_, i) => (
-              <div key={i}>
-                {Produits.map((item, index) => (
-                  <MazouCard Item={item} key={index} />
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+        <AllProducts products={productsResults} />
       </div>
     </>
   )

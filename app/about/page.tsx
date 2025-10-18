@@ -49,8 +49,13 @@ export default function AboutPage() {
               <p className="title">Contactez-nous :</p>
               <p className="content">
                 Une question ? Une suggestion ?
-                <br /> 📧 [adresse e-mail Mazou]
-                <br /> 📞 [numéro de téléphone Mazou]
+                <br /> - Envoyez nous un email à <br />
+                <b>📧 samtebs07@gmail.com</b>
+                <br /> - Laissez nous un message WhatsApp au <br />
+                📞{' '}
+                <b>
+                  <a href="https://wa.me/237696771089">696 77 10 89</a>
+                </b>
               </p>
             </div>
           </div>

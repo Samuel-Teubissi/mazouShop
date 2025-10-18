@@ -9,12 +9,12 @@ import { EyeIcon, ShoppingBagIcon, ShoppingCart } from 'lucide-react'
 interface Product {
   id: number
   title: string
-  img: string[]
-  new_price: string
-  old_price: string
-  product_category: string
-  product_note: string
-  testimonial: string
+  new_price: number
+  old_price: number
+  images: string[]
+  // product_category: string
+  product_note: number
+  testimonial: number
   description: string
   product_profits: string[]
   product_tags: string[]
@@ -41,7 +41,7 @@ export default function MazouCard(props: { Item: Product }) {
           alt={item.title}
           radius="none"
           className="object-cover w-full h-[250]"
-          src={item.img[0]}
+          src={item.images[0]}
           width={418}
           height={250}
         />
@@ -49,7 +49,8 @@ export default function MazouCard(props: { Item: Product }) {
       <div className="md:items-center flex flex-col px-2 py-2 md:px-3 w-full">
         <div className="py-2 md:py-5 md:px-2 font-bold text-center dark:text-dark-text">
           <Link
-            href={'/product/' + item.id + '?categorie=' + item.product_category}
+            // href={'/product/' + item.id + '?categorie=' + item.product_category}
+            href={'/product/' + item.id}
             className="text-inherit"
           >
             <span className="line-clamp-2">{item.title}</span>
