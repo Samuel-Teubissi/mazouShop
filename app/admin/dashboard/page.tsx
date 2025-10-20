@@ -9,6 +9,8 @@ import { useState } from 'react'
 import { ReactSelect } from '@/components/React-MultiSelect'
 import Dropzone from '@/components/React-Dropzone'
 import { cn } from '@/config/utils'
+import { addToast } from '@heroui/toast'
+import { mzToast } from '@/lib/utils'
 
 interface OptionType {
   label: string
@@ -18,6 +20,7 @@ interface OptionType {
 export default function BlogPage() {
   const [discountChecked, setDiscountChecked] = useState(false)
   const [files, setFiles] = useState<File[]>([])
+  // const [errorFile, setErrorFile] = useState({})
   const [selectedCaracteristics, setSelectedCaracteristics] = useState<
     OptionType[]
   >([])
@@ -52,13 +55,14 @@ export default function BlogPage() {
     e.preventDefault()
 
     if (files.length === 0) {
-      alert('Aucun fichier sélectionné !')
+      // alert('Aucun fichier sélectionné !')
+      // setErrorFile({})
+      mzToast('Auncun fichier sélectionné !', 'warning')
       return
     }
 
     // Création du FormData
     const formData = new FormData()
-
     // Ajouter les fichiers
     files.forEach((file) => {
       formData.append('files', file)
@@ -84,13 +88,16 @@ export default function BlogPage() {
 
       if (res.ok) {
         const data = await res.json()
-        console.log('Upload réussi :', data)
-        alert('Fichiers envoyés !')
+        // console.log('Upload réussi :', data)
+        mzToast('Nouvel article ajouté !', 'success')
+        // alert('Fichiers envoyés !')
       } else {
         console.error('Erreur serveur :', await res.text())
+        mzToast('Erreur serveur', 'danger')
       }
     } catch (error) {
       console.error('Erreur réseau :', error)
+      mzToast('Erreur réseau', 'danger')
     }
   }
 
@@ -147,6 +154,7 @@ export default function BlogPage() {
                   isSelected={discountChecked}
                   onValueChange={setDiscountChecked}
                   classNames={{ wrapper: `after:bg-brand-primary-400` }}
+                  className="dark:text-white"
                 >
                   Réduction de prix
                 </Checkbox>

@@ -64,7 +64,7 @@ export default function ImageSlider({ contentImages }: ProductImagesProps) {
           <Image
             isZoomed
             as={NextImage}
-            alt={'slider ' + i}
+            alt={'slider ' + (i + 1)}
             src={item.url}
             width={500}
             height={500}
