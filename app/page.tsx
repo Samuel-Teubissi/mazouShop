@@ -21,24 +21,43 @@ import { PrismaClient } from '@/generated/prisma'
 import AllProducts from '@/components/AllProducts'
 import type { Prisma } from '@/generated/prisma/client'
 
+type ProductWithCategory = Prisma.ProductGetPayload<{
+  include: {
+    images: true
+    product_profits: true
+    product_tags: true
+    product_caracteristics: true
+  }
+}>
+
 export default function Home() {
-  type ProductWithCategory = Prisma.ProductGetPayload<{
-    include: {
-      images: true
-      product_profits: true
-      product_tags: true
-      product_caracteristics: true
-    }
-  }>
+  const [queryParams, setQueryParams] = useState({
+    query: '',
+    category: '',
+  })
+  const { query, category } = queryParams
   const [productsResults, setProductsResults] = useState<ProductWithCategory[]>(
     [],
   )
+  // const [filteredResults, setFilteredResults] = useState();
 
   useEffect(() => {
     fetch('/api/products')
       .then((res) => res.json())
-      .then((data) => setProductsResults(data))
-  }, [])
+      .then((data) => {
+        const filteredProducts = data.filter(
+          (product: ProductWithCategory) =>
+            query
+              ? product.title.toLowerCase().includes(query.toLowerCase())
+              : true,
+
+          // && (queryParams.category && product.product_tags.includes(queryParams.category))
+        )
+
+        console.log('queryParams', queryParams, filteredProducts)
+        setProductsResults(filteredProducts)
+      })
+  }, [queryParams])
 
   interface BoxProps {
     children?: React.ReactNode
@@ -123,7 +142,7 @@ export default function Home() {
           </MotionBox>
         </div>
         <div className="mt-3 md:mt-7">
-          <SearchInput />
+          <SearchInput onQueryChange={setQueryParams} />
         </div>
       </section>
 

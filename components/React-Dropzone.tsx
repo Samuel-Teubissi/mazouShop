@@ -42,7 +42,7 @@ const Dropzone = ({ onFilesChange, className }: MyDropzoneProps) => {
     accept: {
       'image/*': [],
     },
-    maxSize: 1024 * 1000,
+    maxSize: 1024 * 1000 * 2,
     onDrop,
   })
 
@@ -129,14 +129,14 @@ const Dropzone = ({ onFilesChange, className }: MyDropzoneProps) => {
           {/* Accepted files */}
           {files.length >= 1 && (
             <div className="flex flex-col gap-6">
-              <h3 className="title text-lg font-semibold text-neutral-600 dark:text-gray-300 mt-2 border-b pb-3">
+              <h3 className="title text-lg font-semibold text-neutral-600 dark:text-gray-200 mt-2 border-b pb-3">
                 Accepted Files
               </h3>
               <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-10">
                 {files.map((file) => (
                   <li
                     key={file.name}
-                    className="relative w-32 h-fit rounded-md shadow-lg"
+                    className="relative w-32 h-fit rounded-md"
                   >
                     <Image
                       src={file.preview}

@@ -6,7 +6,10 @@ import { prisma } from '@/lib/clientPrisma'
 
 // const prisma = new PrismaClient()
 
-export async function GET(req: Request) {
+export async function GET(
+  req: Request,
+  { searchParams }: { searchParams: { q?: string; categ?: string } },
+) {
   // const promiseProducts = await prisma.product.findMany({
   //   include: {
   //     images: true,
