@@ -8,19 +8,10 @@ import {
   useEffect,
   useState,
 } from 'react'
-import clsx from 'clsx'
 import { mz_button } from '@/components/primitives'
 import { cn } from '@/config/utils'
-import { Button } from '@heroui/button'
-import { Link } from '@heroui/link'
-import { motion } from 'framer-motion'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { mzToast } from '@/lib/utils'
-
-interface BoxProps {
-  children?: React.ReactNode
-  className?: string
-}
+import SearchTags from './SearchTags'
 
 type newQueryProps = {
   onQueryChange: ({
@@ -31,8 +22,6 @@ type newQueryProps = {
     category: string
   }) => void
 }
-
-const categList = ['Santé', 'Alimentation', 'Bien-être', 'Education']
 
 export const SearchInput = ({ onQueryChange }: newQueryProps) => {
   const router = useRouter()
@@ -67,25 +56,6 @@ export const SearchInput = ({ onQueryChange }: newQueryProps) => {
     onQueryChange?.({ query, category: selectedCategory })
   }, [query, selectedCategory])
 
-  const Box = forwardRef<HTMLDivElement, BoxProps>(({ children }, ref) => {
-    return <div ref={ref}>{children}</div>
-  })
-
-  const MotionBox = motion.create(Button)
-  const mzTranslateAppeareance = {
-    initial: {
-      y: 20,
-      rotateX: -90,
-      opacity: 0,
-      filter: 'blur(4px)',
-    },
-    animate: {
-      y: 0,
-      rotateX: 0,
-      opacity: 1,
-      filter: 'blur(0px)',
-    },
-  }
   return (
     <>
       <form
@@ -118,50 +88,10 @@ export const SearchInput = ({ onQueryChange }: newQueryProps) => {
           <SearchIcon className="w-5 h-5 text-white" />
         </button>
       </form>
-      <div className="flex gap-1 items-center justify-center mt-2 w-full flex-wrap">
-        {categList.map((categ, index) => (
-          <MotionBox
-            layout
-            variants={mzTranslateAppeareance}
-            initial="initial"
-            animate="animate"
-            transition={{ delay: index * 0.3 }}
-            key={index}
-            onClick={() => {
-              handleCategory(categ)
-            }}
-            className={cn(
-              mz_button({
-                hoverText: 'secondary',
-                hoverBkg: true,
-                border: true,
-              }),
-              'px-4 py-2 mz_dark-btn dark:text-white',
-              categ === selectedCategory && 'bg-brand-primary-500',
-            )}
-          >
-            {/* <Button
-            as={Link}
-            // href={'/?category=' + link}
-            key={index}
-            onPress={() => {
-              handleCategory(categ)
-            }}
-            className={clsx(
-              mz_button({
-                hoverText: 'secondary',
-                hoverBkg: true,
-                border: true,
-              }),
-              'px-4 py-2 mz_dark-btn dark:text-white',
-              categ === selectedCategory && 'bg-brand-primary-500',
-            )}
-          > */}
-            {categ}
-            {/* </Button> */}
-          </MotionBox>
-        ))}
-      </div>
+      <SearchTags
+        selectedCategory={selectedCategory}
+        onSelect={handleCategory}
+      />
     </>
   )
 }

@@ -30,7 +30,7 @@ export default function SkeletonMazouCard() {
         <div className="flex md:justify-center md:items-center gap-1 w-full">
           <Button
             color="default"
-            className="bg-brand-primary-500/35 w-full sm:w-auto flex-1 h-10 animate-pulse"
+            className="bg-gray-200 w-full sm:w-auto flex-1 h-10 animate-pulse"
             variant="flat"
             radius="sm"
           ></Button>
