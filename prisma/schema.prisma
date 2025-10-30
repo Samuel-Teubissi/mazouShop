@@ -18,8 +18,8 @@ model Product {
   new_price         Int
   old_price         Int?
   // product_category  String
-  product_note      Float?
-  testimonial       Int?
+  product_note      Float
+  testimonial       Int
   description       String
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt

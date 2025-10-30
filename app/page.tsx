@@ -20,6 +20,8 @@ import { TextLoop } from '@/components/motion-primitives/text-loop'
 import { PrismaClient } from '@/generated/prisma'
 import AllProducts from '@/components/AllProducts'
 import type { Prisma } from '@/generated/prisma/client'
+import { useRouter } from 'next/navigation'
+import SkeletonMazouList from '@/components/SkeletonMazouList'
 
 type ProductWithCategory = Prisma.ProductGetPayload<{
   include: {
@@ -31,33 +33,40 @@ type ProductWithCategory = Prisma.ProductGetPayload<{
 }>
 
 export default function Home() {
+  const router = useRouter()
   const [queryParams, setQueryParams] = useState({
     query: '',
     category: '',
   })
-  const { query, category } = queryParams
   const [productsResults, setProductsResults] = useState<ProductWithCategory[]>(
     [],
   )
+  const [loadingProducts, setLoadingProducts] = useState(true)
   // const [filteredResults, setFilteredResults] = useState();
 
+  const { query, category } = queryParams
   useEffect(() => {
-    fetch('/api/products')
+    console.log('queryParams', queryParams)
+
+    const params = new URLSearchParams()
+    if (query) params.set('q', query)
+    if (category) params.set('categ', category)
+    // router.replace(`?${params.toString()}`, { scroll: false })
+    fetch(`/api/products?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => {
-        const filteredProducts = data.filter(
-          (product: ProductWithCategory) =>
-            query
-              ? product.title.toLowerCase().includes(query.toLowerCase())
-              : true,
-
-          // && (queryParams.category && product.product_tags.includes(queryParams.category))
-        )
-
-        console.log('queryParams', queryParams, filteredProducts)
-        setProductsResults(filteredProducts)
+        // const filteredProducts = data.filter(
+        //   (product: ProductWithCategory) =>
+        //     query
+        //       ? product.title.toLowerCase().includes(query.toLowerCase())
+        //       : true,
+        //   // && (queryParams.category && product.product_tags.includes(queryParams.category))
+        // )
+        // console.log('queryParams', queryParams, filteredProducts)
+        setProductsResults(data)
       })
-  }, [queryParams])
+      .finally(() => setLoadingProducts(false))
+  }, [query, category])
 
   interface BoxProps {
     children?: React.ReactNode
@@ -147,6 +156,7 @@ export default function Home() {
       </section>
 
       <div className="mz_container">
+        {loadingProducts && <SkeletonMazouList />}
         <AllProducts products={productsResults} />
       </div>
     </>

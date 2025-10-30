@@ -52,7 +52,7 @@
     "@heroui/toast": "2.0.16",
     "@heroui/tooltip": "2.2.23",
     "@heroui/user": "2.2.21",
-    "@prisma/client": "6.16.2",
+    "@prisma/client": "6.17.1",
     "@react-aria/ssr": "3.9.10",
     "@react-aria/visually-hidden": "3.8.27",
     "@rpldy/uploady": "^1.11.0",

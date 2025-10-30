@@ -181,18 +181,17 @@ export default async function Page({
               <div>
                 <Button
                   variant="bordered"
-                  className="dark:text-dark-text dark:hover:bg-white/15 hover:bg-brand-primary-500/5"
+                  className="dark:text-dark-text dark:hover:bg-white/15 hover:bg-brand-primary-500/5 hidden"
                 >
                   Donner votre avis
                 </Button>
               </div>
             </div>
           </div>
-          <div className="mz_container-bloc">
+          <div className="mz_container-bloc hidden">
             <h3>Nous avons aussi</h3>
             <div></div>
           </div>
-          <br />
         </div>
       </div>
     </>

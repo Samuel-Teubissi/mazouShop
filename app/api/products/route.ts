@@ -6,10 +6,13 @@ import { prisma } from '@/lib/clientPrisma'
 
 // const prisma = new PrismaClient()
 
-export async function GET(
-  req: Request,
-  { searchParams }: { searchParams: { q?: string; categ?: string } },
-) {
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url)
+  let q = searchParams.get('q')
+  let categ = searchParams.get('categ')
+  q = q ? decodeURIComponent(q) : ''
+  categ = categ ? decodeURIComponent(categ) : ''
+
   // const promiseProducts = await prisma.product.findMany({
   //   include: {
   //     images: true,
@@ -20,16 +23,28 @@ export async function GET(
   // })
 
   // return NextResponse.json(promiseProducts)
+  // On construit dynamiquement le "where"
+  const where: any = {}
 
-  // const { q } = req.query;
-
+  if (q && categ) {
+    // Recherche combinée (ET logique)
+    where.AND = [
+      {
+        OR: [{ title: { contains: q } }, { description: { contains: q } }],
+      },
+      { product_tags: { label: { contains: categ } } },
+    ]
+  } else if (q) {
+    // Recherche uniquement par mot-clé
+    where.OR = [{ title: { contains: q } }, { description: { contains: q } }]
+  } else if (categ) {
+    // Recherche uniquement par catégorie
+    where.product_tags = { label: { contains: categ } }
+  }
   try {
     const articles = await prisma.product.findMany({
-      // where: q
-      //   ? {
-      //       title: { contains: String(q), mode: 'insensitive' },
-      //     }
-      //   : undefined, // si q est vide, récupère tous les articles
+      where: where || undefined,
+      // where,
       include: {
         images: true,
         product_profits: true,
@@ -38,6 +53,7 @@ export async function GET(
       },
       orderBy: { id: 'desc' }, // optionnel, tri par id décroissant
     })
+    console.log('articles 2', where)
 
     return NextResponse.json(articles, { status: 200 })
   } catch (error) {

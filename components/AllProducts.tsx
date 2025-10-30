@@ -22,23 +22,29 @@ export default function AllProducts({ products }: Products) {
   //     .then((data: ProductWithCategory[]) => setProducts(data))
   // }, []);
 
-  const formattedProducts = products.map((p) => ({
-    id: p.id,
-    title: p.title,
-    new_price: p.new_price,
-    old_price: p.new_price,
-    images: p.images.map((i) => i.url),
+  console.log('products', products)
+  let formattedProducts = []
+
+  formattedProducts = products.map((p) => ({
+    // id: p.id,
+    // title: p.title,
+    // new_price: p.new_price,
+    // description: p.description,
+    ...p,
+    old_price: p.old_price as number,
     product_note: p.product_note as number,
     testimonial: p.testimonial as number,
-    description: p.description,
+    images: p.images.map((i) => i.url),
     product_profits: p.product_profits.map((p) => p.label),
     product_tags: p.product_tags.map((t) => t.label),
     product_caracteristics: p.product_caracteristics.map((c) => c.label),
   }))
 
+  if (!formattedProducts) return <div>No products found</div>
+
   return (
     <div className="mz_container-body px-3">
-      <div className="mz_Heading text-2xl md:text-3xl">SPORT</div>
+      <div className="mz_Heading text-2xl md:text-3xl hidden">SPORT</div>
       <div className="w-full gap-x-1 gap-y-3 md:gap-3 items-center grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {/* {[...Array(4)].map((_, i) => ( */}
         {/* <div key={i}> */}

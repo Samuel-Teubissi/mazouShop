@@ -1,7 +1,13 @@
 'use client'
 
 import { SearchIcon } from 'lucide-react'
-import { FormEvent, forwardRef, MouseEventHandler, useState } from 'react'
+import {
+  FormEvent,
+  forwardRef,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from 'react'
 import clsx from 'clsx'
 import { mz_button } from '@/components/primitives'
 import { cn } from '@/config/utils'
@@ -26,13 +32,14 @@ type newQueryProps = {
   }) => void
 }
 
+const categList = ['Santé', 'Alimentation', 'Bien-être', 'Education']
+
 export const SearchInput = ({ onQueryChange }: newQueryProps) => {
   const router = useRouter()
   const searchParams = useSearchParams()
 
   const initialQuery = searchParams.get('q') || ''
   const initialCateg = searchParams.get('categ') || ''
-  const categList = ['Santé', 'Alimentation', 'Bien-être', 'Education']
 
   const [query, setQuery] = useState(initialQuery)
   const [selectedCategory, setSelectedCategory] = useState(initialCateg)
@@ -55,6 +62,10 @@ export const SearchInput = ({ onQueryChange }: newQueryProps) => {
     setSelectedCategory(category)
     updateURL(query, category)
   }
+
+  useEffect(() => {
+    onQueryChange?.({ query, category: selectedCategory })
+  }, [query, selectedCategory])
 
   const Box = forwardRef<HTMLDivElement, BoxProps>(({ children }, ref) => {
     return <div ref={ref}>{children}</div>
