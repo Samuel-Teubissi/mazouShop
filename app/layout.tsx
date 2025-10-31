@@ -43,7 +43,7 @@ export default function RootLayout({
         className={clsx('min-h-screen text-foreground font-sans antialiased')}
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
-          <div className="relative flex flex-col h-screen">
+          <div className="relative flex flex-col min-h-screen">
             <header className="bg-white dark:bg-dark-div backdrop-blur-xs text-brand-primary-400 fixed py-3 w-full z-50">
               <div className="flex items-center justify-between max-w-6xl px-3 md:px-6 mx-auto">
                 <div className="flex items-center">

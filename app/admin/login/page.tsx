@@ -75,12 +75,12 @@ export default function BlogPage() {
                   name="user"
                 />
                 <Input
-                  className=""
                   endContent={hideButton}
                   label="Mot de Passe"
                   type={isVisible ? 'text' : 'password'}
                   size="lg"
                   name="password"
+                  className="appearance-none"
                   isRequired
                 />
                 <div className="mt-10">
