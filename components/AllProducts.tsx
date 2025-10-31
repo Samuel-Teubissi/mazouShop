@@ -21,11 +21,7 @@ export default function AllProducts({ products }: Products) {
   //     .then((res) => res.json())
   //     .then((data: ProductWithCategory[]) => setProducts(data))
   // }, []);
-
-  console.log('products', products)
-  let formattedProducts = []
-
-  formattedProducts = products.map((p) => ({
+  const formattedProducts = products.map((p) => ({
     // id: p.id,
     // title: p.title,
     // new_price: p.new_price,
@@ -40,7 +36,7 @@ export default function AllProducts({ products }: Products) {
     product_caracteristics: p.product_caracteristics.map((c) => c.label),
   }))
 
-  if (formattedProducts.length === 0)
+  if (!formattedProducts || formattedProducts.length === 0)
     return (
       <div className="mz_container-body px-3">
         <div className="h-75 w-full flex justify-center items-center bg-gray-200/40 gap-2">

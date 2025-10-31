@@ -10,8 +10,8 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
   let q = searchParams.get('q')
   let categ = searchParams.get('categ')
-  q = q ? decodeURIComponent(q) : ''
-  categ = categ ? decodeURIComponent(categ) : ''
+  q = q?.toLocaleLowerCase() ? decodeURIComponent(q) : ''
+  categ = categ?.toLocaleLowerCase() ? decodeURIComponent(categ) : ''
 
   // const promiseProducts = await prisma.product.findMany({
   //   include: {
@@ -32,14 +32,14 @@ export async function GET(req: Request) {
       {
         OR: [{ title: { contains: q } }, { description: { contains: q } }],
       },
-      { product_tags: { label: { contains: categ } } },
+      { product_tags: { some: { label: { contains: categ } } } },
     ]
   } else if (q) {
     // Recherche uniquement par mot-clé
     where.OR = [{ title: { contains: q } }, { description: { contains: q } }]
   } else if (categ) {
     // Recherche uniquement par catégorie
-    where.product_tags = { label: { contains: categ } }
+    where.product_tags = { some: { label: { contains: categ } } }
   }
   try {
     const articles = await prisma.product.findMany({

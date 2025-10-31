@@ -46,8 +46,6 @@ export default function Home() {
 
   const { query, category } = queryParams
   useEffect(() => {
-    console.log('queryParams', queryParams)
-
     const params = new URLSearchParams()
     if (query) params.set('q', query)
     if (category) params.set('categ', category)
@@ -78,8 +76,11 @@ export default function Home() {
       </section>
 
       <div className="mz_container">
-        {loadingProducts && <SkeletonMazouList />}
-        <AllProducts products={productsResults} />
+        {loadingProducts ? (
+          <SkeletonMazouList />
+        ) : (
+          <AllProducts products={productsResults} />
+        )}
       </div>
     </>
   )
