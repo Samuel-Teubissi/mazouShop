@@ -5,6 +5,7 @@ import {
   FormEvent,
   forwardRef,
   MouseEventHandler,
+  useCallback,
   useEffect,
   useState,
 } from 'react'
@@ -34,9 +35,15 @@ export const SearchInput = ({ onQueryChange }: newQueryProps) => {
   const [selectedCategory, setSelectedCategory] = useState(initialCateg)
 
   const updateURL = (newQuery: string, newCategory: string) => {
+    console.log('updateURL', newQuery, newCategory, selectedCategory)
+
     const params = new URLSearchParams()
     if (newQuery) params.set('q', newQuery)
-    if (newCategory) params.set('categ', newCategory)
+    if (newCategory) {
+      params.set('categ', newCategory)
+    } else {
+      params.delete('categ')
+    }
     router.replace(`?${params.toString()}`, { scroll: false })
     onQueryChange?.({ query, category: selectedCategory })
   }
@@ -45,14 +52,28 @@ export const SearchInput = ({ onQueryChange }: newQueryProps) => {
     e.preventDefault()
     // alert('confirm')
     if (!query) return ''
-    updateURL(query, selectedCategory)
+    // updateURL(query, selectedCategory)
   }
-  const handleCategory = (category: string) => {
-    setSelectedCategory(category)
-    updateURL(query, category)
-  }
+  const handleCategory = useCallback(
+    (category: string) => {
+      let newCateg
+
+      // Si le tag cliqué est déjà sélectionné, le désélectionner (toggle OFF)
+      if (category === selectedCategory) {
+        newCateg = ''
+      } else {
+        // Sinon, sélectionner le nouveau tag (toggle ON)
+        newCateg = category
+      }
+      setSelectedCategory(newCateg)
+      // setSelectedCategory(category)
+      // updateURL(query, category)
+    },
+    [selectedCategory],
+  )
 
   useEffect(() => {
+    updateURL(query, selectedCategory)
     onQueryChange?.({ query, category: selectedCategory })
   }, [query, selectedCategory])
 

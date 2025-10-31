@@ -39,7 +39,7 @@ export default function AllProducts({ products }: Products) {
   if (!formattedProducts || formattedProducts.length === 0)
     return (
       <div className="mz_container-body px-3">
-        <div className="h-75 w-full flex justify-center items-center bg-gray-200/40 gap-2">
+        <div className="h-75 w-full flex justify-center items-center bg-gray-200/40 dark:bg-dark-div gap-2">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"

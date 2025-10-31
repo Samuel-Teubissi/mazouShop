@@ -8,7 +8,7 @@ import { EyeIcon, ShoppingBagIcon, ShoppingCart } from 'lucide-react'
 
 export default function SkeletonMazouCard() {
   return (
-    <div className="w-full border border-transparent mz_trans hover:border-brand-primary-400/50 md:shadow-small rounded-large text-foreground relative dark:bg-dark-div bg-white">
+    <div className="w-full border border-transparent mz_trans md:shadow-small rounded-large text-foreground relative dark:bg-dark-div bg-white">
       <div className="absolute flex flex-col top-1/3 -left-2 gap-1 font-bold text-lg z-10">
         <div className="mz_priceBand bg-gray-400/75 animate-pulse">
           <div className="mz_priceBand-tip-secondary h-6 w-12"></div>
@@ -20,17 +20,17 @@ export default function SkeletonMazouCard() {
       <div className="relative overflow-hidden rounded-t-large z-0">
         <div
           style={{ width: 418, height: 250 }}
-          className="bg-gray-200 animate-pulse"
+          className="bg-gray-200 dark:bg-dark-div2 animate-pulse"
         ></div>
       </div>
       <div className="md:items-center flex flex-col px-2 py-2 md:px-3 w-full">
         <div className="py-2 md:py-5 md:px-2 font-bold w-full animate-pulse">
-          <div className="bg-gray-200 animate-pulse h-6 w-full"></div>
+          <div className="bg-gray-200 dark:bg-dark-div2 animate-pulse h-6 w-full"></div>
         </div>
         <div className="flex md:justify-center md:items-center gap-1 w-full">
           <Button
             color="default"
-            className="bg-gray-200 w-full sm:w-auto flex-1 h-10 animate-pulse"
+            className="bg-gray-200 dark:bg-dark-div2 w-full sm:w-auto flex-1 h-10 animate-pulse"
             variant="flat"
             radius="sm"
           ></Button>

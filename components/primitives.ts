@@ -69,8 +69,8 @@ export const mz_button = tv({
   variants: {
     bkg: {
       default: '',
-      primary: 'bg-brand-primary-400',
-      secondary: 'bg-brand-primary-500',
+      primary: '!bg-brand-primary-400 !text-white',
+      secondary: '!bg-brand-primary-500 !text-white',
     },
     hoverText: {
       primary: 'hover:text-brand-primary-500',

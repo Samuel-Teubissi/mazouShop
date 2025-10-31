@@ -42,14 +42,11 @@ const SearchTags = ({
     return () => {}
   }, [])
 
-  const AOS = useCallback(() => {
+  useEffect(() => {
     Aos.init({
       duration: 300,
       once: true,
     })
-  }, [])
-  useEffect(() => {
-    AOS()
   }, [])
 
   const categList = tags.map((t) => t.label)
@@ -76,50 +73,56 @@ const SearchTags = ({
 
   const renderTagsList = useMemo(
     () =>
-      categList.map((categ, index) => (
-        // <MotionBox
-        // key={index}
-        // variants={mzTranslateAppeareance}
-        // initial="initial"
-        // animate="animate"
-        // transition={{ delay: index * 0.3 }}
-        //     // onClick={() => {
-        //     //   onSelect(categ)
-        //     // }}
-        //     className={cn(
-        //       mz_button({
-        //         hoverText: 'secondary',
-        //         hoverBkg: true,
-        //         border: true,
-        //       }),
-        //       'px-4 py-2 mz_dark-btn dark:text-white',
-        //       categ === selectedCategory && 'bg-brand-primary-500',
-        //     )}
-        // >
-        <Button
-          // as={Link}
-          // href={'/?category=' + link}
-          key={index}
-          onPress={() => {
-            onSelect(categ)
-            console.log('categ', categ)
-          }}
-          className={cn(
-            mz_button({
-              hoverText: 'secondary',
-              hoverBkg: true,
-              border: true,
-            }),
-            'px-4 py-2 mz_dark-btn dark:text-white',
-            categ === selectedCategory ? 'bg-brand-primary-500' : null,
-          )}
-          // data-aos="fade-right"
-          // data-aos-offset={100}
-        >
-          {categ}
-        </Button>
-        // </MotionBox>
-      )),
+      categList.map((categ, index) => {
+        const finalClasses = cn(
+          'px-4 py-2 mz_dark-btn dark:text-white',
+          mz_button({
+            bkg: categ === selectedCategory ? 'secondary' : 'default',
+            hoverText: 'secondary',
+            hoverBkg: true,
+            border: true,
+          }),
+        )
+        return (
+          <MotionBox
+            key={index}
+            variants={mzTranslateAppeareance}
+            initial="initial"
+            animate="animate"
+            // transition={{ delay: index * 0.3 }}
+            //     // onClick={() => {
+            //     //   onSelect(categ)
+            //     // }}
+            //     className={cn(
+            //       mz_button({
+            //         hoverText: 'secondary',
+            //         hoverBkg: true,
+            //         border: true,
+            //       }),
+            //       'px-4 py-2 mz_dark-btn dark:text-white',
+            //       categ === selectedCategory && 'bg-brand-primary-500',
+            //     )}
+          >
+            <Button
+              // as={Link}
+              // href={'/?category=' + link}
+              key={index}
+              onPress={() => {
+                onSelect(categ)
+              }}
+              // className={`${buttonClasses}
+              //   'px-4 py-2 mz_dark-btn dark:text-white'
+              //   ${categ === selectedCategory ? 'bg-brand-primary-500' : null}
+              // `}
+              className={finalClasses}
+              // data-aos="fade-right"
+              // data-aos-offset={100}
+            >
+              {categ}
+            </Button>
+          </MotionBox>
+        )
+      }),
     //   [selectedCategory],
     [categList],
   )
