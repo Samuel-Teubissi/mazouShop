@@ -35,8 +35,6 @@ export const SearchInput = ({ onQueryChange }: newQueryProps) => {
   const [selectedCategory, setSelectedCategory] = useState(initialCateg)
 
   const updateURL = (newQuery: string, newCategory: string) => {
-    console.log('updateURL', newQuery, newCategory, selectedCategory)
-
     const params = new URLSearchParams()
     if (newQuery) params.set('q', newQuery)
     if (newCategory) {

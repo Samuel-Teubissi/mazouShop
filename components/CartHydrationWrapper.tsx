@@ -1,0 +1,43 @@
+'use client'
+
+import React from 'react'
+import { useHydrationCart } from './useHydrationCart'
+import { useCartStore } from '@/lib/cartStore'
+// 🚨 Importez vos vrais composants ici
+// import CartBadge from './CartBadge';
+// import CartModalManager from './CartModalManager';
+
+interface CartHydrationWrapperProps {
+  children: React.ReactNode
+}
+
+/**
+ * Ce composant gère l'appel au hook d'hydratation.
+ * Il ne rend que les enfants, en supposant que les composants enfants
+ * gèrent leur propre affichage conditionnel basé sur l'état du panier.
+ * Si le panier est en cours de chargement, il peut renvoyer null ou un composant
+ * de chargement global si le children dépend strictement de l'état hydraté.
+ */
+const CartHydrationWrapper: React.FC<CartHydrationWrapperProps> = ({
+  children,
+}) => {
+  // Cet appel est désormais valide car le wrapper est un Client Component
+  const isHydrated = useHydrationCart()
+
+  // Option 1: Attendre l'hydratation pour ne pas rendre l'arborescence
+  // Si l'application doit ABSOLUMENT attendre les données du cookie avant de rendre son contenu.
+  if (!isHydrated) {
+    // Retourne un chargement invisible ou null pendant la synchronisation
+    // Cela empêche un "flash" de contenu non synchronisé.
+    return null
+  }
+
+  // Option 2: Rendre toujours les enfants si l'attente est gérée par les composants descendants
+  // Si les composants enfants peuvent gérer eux-mêmes l'état isLoadingCart.
+  // Dans le cas d'un panier, l'option 1 est souvent plus sûre.
+
+  // Si isHydrated est true, nous rendons les enfants normalement.
+  return <>{children}</>
+}
+
+export default CartHydrationWrapper

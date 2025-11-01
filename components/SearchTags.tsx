@@ -28,7 +28,6 @@ const SearchTags = ({
   selectedCategory: string
   onSelect: (categ: string) => void
 }) => {
-  console.log('selectedCategory', selectedCategory)
   const [tags, setTags] = useState<{ label: string }[]>([])
 
   useEffect(() => {

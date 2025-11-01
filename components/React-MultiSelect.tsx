@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React, { useId } from 'react'
 
 import Select, { components, ControlProps, MultiValue } from 'react-select'
 import CreatableSelect from 'react-select/creatable'
@@ -36,6 +38,8 @@ export const ReactSelect = ({
       <components.Control {...props} />
     </div>
   )
+  const selectInstanceId = useId()
+
   return (
     <>
       <div
@@ -54,6 +58,7 @@ export const ReactSelect = ({
       classNamePrefix="select"
     /> */}
         <CreatableSelect
+          instanceId={selectInstanceId}
           isClearable
           isSearchable
           isMulti
