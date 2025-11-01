@@ -52,6 +52,8 @@ export default async function Page({
   }
 
   const mz_Phone = Number(process.env.MAZOU_PHONE)
+  const defaulBtnText = `Commander sur WhatsApp (${mz_Phone})`
+
   const htmlDescription = marked(product?.description)
 
   const newPrice = Number(product?.new_price)
@@ -80,6 +82,10 @@ export default async function Page({
   // }
   // const isInCart = cart.some((c) => c.cartID === product.id)
   // const isAdded = !!isInCart
+
+  const zapMessage =
+    'Bonjour je viens du site Mazou et je suis intéressé par le porduit ' +
+    product.title
 
   return (
     <>
@@ -126,7 +132,11 @@ export default async function Page({
               </div>
               <div>
                 <div>
-                  <WhatsAppButton number={mz_Phone} />
+                  <WhatsAppButton
+                    message={zapMessage}
+                    number={mz_Phone}
+                    btnText={defaulBtnText}
+                  />
                 </div>
                 {/* <div>
                   <Button

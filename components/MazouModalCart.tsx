@@ -17,6 +17,7 @@ import { Trash2Icon } from 'lucide-react'
 import Image from 'next/image'
 import { useEffect } from 'react'
 import { Spinner } from '@heroui/spinner'
+import WhatsAppButton from './WhatsappButton'
 
 export const MazouModalCart = ({
   isOpen,
@@ -63,6 +64,12 @@ export const MazouModalCart = ({
     }
   }, [isOpen, fetchEnrichedData])
 
+  const mz_Phone = 696771089
+  const cartProductsName = enrichedCart.map((p) => p.title).join('\n')
+  const zapMessage =
+    'Bonjour je viens du site Mazou et je suis intéressé par le porduit \n' +
+    cartProductsName
+
   return (
     <HeroUIModal
       isOpen={isOpen}
@@ -88,13 +95,13 @@ export const MazouModalCart = ({
                 </div>
               ) : (
                 <div className="mz_cart space-y-2 h-auto">
-                  {enrichedCart.map((item) => (
+                  {enrichedCart.map((item, index) => (
                     <div
                       key={item.id}
                       className="flex gap-2 py-3 border-b-2 border-gray-300 dark:border-gray-700 last:border-transparent dark:last:border-transparent"
                     >
                       <div className="hidden md:flex items-center px-2 font-bold">
-                        {item.id}
+                        {index + 1}
                       </div>
                       <div className="min-h-[100px] w-auto flex justify-center basis-40 rounded-md overflow-hidden">
                         {/* <img
@@ -154,13 +161,22 @@ export const MazouModalCart = ({
                   {totalCartItems} F
                 </span>
               </div>
-              <Button
+              {/* <Button
                 className="mz_btn-submit"
                 onPress={onClose}
                 isDisabled={totalCartItems === 0}
               >
                 Commander
-              </Button>
+              </Button> */}
+              {totalCartItems > 0 && (
+                <div className="">
+                  <WhatsAppButton
+                    message={zapMessage}
+                    number={mz_Phone}
+                    btnText="Comander"
+                  />
+                </div>
+              )}
             </ModalFooter>
           </>
         )}

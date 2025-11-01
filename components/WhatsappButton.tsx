@@ -5,13 +5,15 @@ import React from 'react'
 import { addToast, ToastProvider } from '@heroui/toast'
 
 export default function WhatsAppButton({
-  // message = 'Bonjour',
+  btnText,
+  message,
   number,
 }: {
-  // message: string
+  btnText: string
+  message: string
   number: number
 }) {
-  const message = 'Bonjour'
+  // const message = 'Bonjour'
   const phone = '237' + number
   const waAppUrl = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(message)}`
   const waWebUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
@@ -43,7 +45,7 @@ export default function WhatsAppButton({
       className="mz_trans w-full inline-flex justify-center items-center gap-4 p-3 active:scale-95 rounded-xl bg-green-600 text-white hover:bg-green-700"
       aria-label="Contacter sur WhatsApp"
     >
-      Commander sur WhatsApp ({number})
+      {btnText}
       <img src="/images/whatsapp-icon.svg" alt="Logo Whatsapp" />
     </Link>
   )

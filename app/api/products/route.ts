@@ -53,7 +53,6 @@ export async function GET(req: Request) {
       },
       orderBy: { id: 'desc' }, // optionnel, tri par id décroissant
     })
-    console.log('articles 2', where)
 
     return NextResponse.json(articles, { status: 200 })
   } catch (error) {
