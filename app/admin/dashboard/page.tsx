@@ -5,7 +5,7 @@ import { Button } from '@heroui/button'
 import { Input, Textarea } from '@heroui/input'
 import { Checkbox } from '@heroui/checkbox'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { ReactSelect } from '@/components/React-MultiSelect'
 import Dropzone from '@/components/React-Dropzone'
 import { cn } from '@/config/utils'
@@ -21,9 +21,11 @@ export default function BlogPage() {
   const [discountChecked, setDiscountChecked] = useState(false)
   const [files, setFiles] = useState<File[]>([])
   // const [errorFile, setErrorFile] = useState({})
-  const [selectedCaracteristics, setSelectedCaracteristics] = useState<
-    OptionType[]
-  >([])
+  // const [selectedCaracteristics, setSelectedCaracteristics] = useState<
+  //   OptionType[]
+  // >([])
+
+  const formRef = useRef<HTMLFormElement>(null)
   const [form, setForm] = useState({
     title: '',
     price: '',
@@ -33,6 +35,7 @@ export default function BlogPage() {
     review: '',
     tags: '',
     profits: '',
+    caracteristics: '',
   })
 
   const handleChange = (
@@ -67,8 +70,8 @@ export default function BlogPage() {
     files.forEach((file) => {
       formData.append('files', file)
     })
-    const valuesCaracteristics = selectedCaracteristics.map((c) => c.value)
-    formData.append('caracteristics', JSON.stringify(valuesCaracteristics))
+    // const valuesCaracteristics = selectedCaracteristics.map((c) => c.value)
+    // formData.append('caracteristics', JSON.stringify(valuesCaracteristics))
 
     // // Ajouter d'autres champs texte
     formData.append('title', form.title)
@@ -79,6 +82,7 @@ export default function BlogPage() {
     formData.append('review', form.review)
     formData.append('tags', form.tags)
     formData.append('profits', form.profits)
+    formData.append('caracteristics', form.caracteristics)
 
     try {
       const res = await fetch('/api/article', {
@@ -90,6 +94,17 @@ export default function BlogPage() {
         const data = await res.json()
         // console.log('Upload réussi :', data)
         mzToast('Nouvel article ajouté !', 'success')
+        setForm({
+          title: '',
+          price: '',
+          discount: '',
+          description: '',
+          note: '',
+          review: '',
+          tags: '',
+          profits: '',
+          caracteristics: '',
+        })
         // alert('Fichiers envoyés !')
       } else {
         console.error('Erreur serveur :', await res.text())
@@ -119,7 +134,7 @@ export default function BlogPage() {
           </div>
           <div className="mz_container-bloc">
             <h3 className="mz_Heading">Ajouter un article</h3>
-            <form onSubmit={handleSubmit} className="space-y-2">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-2">
               <Input
                 type="text"
                 isRequired
@@ -216,17 +231,20 @@ export default function BlogPage() {
                 onChange={handleChange}
               />
               <hr className="my-6" />
-              <ReactSelect
+              React Select désactivé
+              {/* <ReactSelect
                 options={optionsCaracteristics}
                 value={selectedCaracteristics}
                 onChange={setSelectedCaracteristics}
-              />
-              {/* <Input
+              /> */}
+              <Input
                 type="text"
                 label="Caractéristique de produit"
                 size="lg"
-                name="title"
-              /> */}
+                name="caracteristics"
+                value={form.caracteristics}
+                onChange={handleChange}
+              />
               {/* <Button
                 variant="bordered"
                 size="md"

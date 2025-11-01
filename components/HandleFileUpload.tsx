@@ -25,5 +25,5 @@ export async function handleFileUpload(file: File): Promise<string> {
   await writeFile(filepath, uint8Array)
 
   // Retourner le chemin accessible depuis le navigateur
-  return `uploads/${filename}`
+  return `/uploads/${filename}`
 }

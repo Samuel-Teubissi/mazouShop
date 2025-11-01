@@ -94,12 +94,14 @@ export default function MazouCard(props: { Item: Product }) {
   // }
 
   return (
-    <div className="w-full border border-transparent mz_trans hover:border-brand-primary-400/50 md:shadow-small rounded-large text-foreground relative dark:bg-dark-div bg-white">
+    <div className="w-full border border-transparent mz_trans hover:border-brand-primary-400/50 md:shadow-small rounded-large text-foreground relative dark:bg-dark-div bg-white max-w-[300px]">
       <div className="absolute flex flex-col top-1/3 -left-2 gap-1 font-bold text-lg z-10">
-        <span className="line-through mz_priceBand bg-gray-400/75 text-medium dark:text-black/90">
-          <span className="mz_priceBand-tip-secondary"></span>
-          {formatPrice(item.old_price)} F
-        </span>
+        {item.old_price && (
+          <span className="line-through mz_priceBand bg-gray-400/75 text-medium dark:text-black/90">
+            <span className="mz_priceBand-tip-secondary"></span>
+            {formatPrice(item.old_price)} F
+          </span>
+        )}
         <span className="text-white mz_priceBand bg-brand-primary-400">
           <span className="mz_priceBand-tip-primary"></span>
           {formatPrice(item.new_price)} F
@@ -137,7 +139,27 @@ export default function MazouCard(props: { Item: Product }) {
             radius="sm"
             onPress={handleAdd}
           >
-            {isAdded ? <Trash2Icon size={15} /> : <ShoppingBagIcon size={15} />}
+            {isAdded ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#B7B7B7"
+              >
+                <path d="M360-640v-80h240v80H360ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#B7B7B7"
+              >
+                <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z" />
+              </svg>
+            )}
             <span className="sm:inline hidden">
               {isAdded ? 'Retirer du panier' : 'Ajouter au panier'}
             </span>

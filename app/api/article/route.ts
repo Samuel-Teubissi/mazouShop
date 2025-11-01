@@ -28,21 +28,26 @@ export async function POST(req: Request) {
       description: formData.get('description') as string,
       note: formData.get('note') as string,
       review: formData.get('review') as string,
-      tags: formData.get('tags') as string,
       profits: formData.get('profits') as string,
-      caracteristics: JSON.parse(formData.get('caracteristics') as string),
+      tags: formData.get('tags') as string,
+      caracteristics: formData.get('caracteristics') as string,
+      // tags: JSON.parse(formData.get('tags') as string),
+      // profits: JSON.parse(formData.get('profits') as string),
+      // caracteristics: JSON.parse(formData.get('caracteristics') as string),
       //   imagesFiles: formData.get('files'),
     }
     const arrayTags = data.tags
       ?.split(',')
-      .map((t) => t.trim())
+      // .map((t) => t.trim())
+      .map((item) => item.replace(/"/g, '').trim())
       .filter(Boolean)
     const arrayProfits = data.profits
       ?.split(',')
-      .map((p) => p.trim())
+      .map((item) => item.replace(/"/g, '').trim())
       .filter(Boolean)
     const arrayCaracteristics = data.caracteristics
-      ?.map((c: string) => c.trim())
+      ?.split(',')
+      .map((item) => item.replace(/"/g, '').trim())
       .filter(Boolean)
 
     // const prisma = new PrismaClient()
@@ -59,10 +64,10 @@ export async function POST(req: Request) {
           create: fileUrls.map((i) => ({ url: i })),
         },
         product_profits: {
-          create: arrayProfits.map((p) => ({ label: p })),
+          create: arrayProfits.map((p: string) => ({ label: p })),
         },
         product_tags: {
-          create: arrayTags.map((t) => ({ label: t })),
+          create: arrayTags.map((t: string) => ({ label: t })),
         },
         product_caracteristics: {
           create: arrayCaracteristics.map((c: string) => ({ label: c })),

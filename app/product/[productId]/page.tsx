@@ -12,6 +12,8 @@ import { formatPrice } from '@/config/utils'
 import { Prisma, Product } from '@/generated/prisma'
 import { prisma } from '@/lib/clientPrisma'
 import { notFound } from 'next/navigation'
+import { useCart } from '@/lib/useCart'
+import { mzToast } from '@/lib/utils'
 // import Breadcrumbs from '@mui/material/Breadcrumbs'
 // import Typography from '@mui/material/Typography'
 // import Link from '@mui/material/Link'
@@ -49,11 +51,35 @@ export default async function Page({
     notFound()
   }
 
+  const mz_Phone = Number(process.env.MAZOU_PHONE)
   const htmlDescription = marked(product?.description)
 
   const newPrice = Number(product?.new_price)
   const oldPrice = Number(product?.old_price)
-  const promo = Math.round(((oldPrice - newPrice) / oldPrice) * 100)
+  let showPromo = false
+  let promo = 0
+  if (oldPrice) {
+    promo = Math.round(((oldPrice - newPrice) / oldPrice) * 100)
+    showPromo = true
+  }
+
+  // const { cart, addCartProduct, removeCartProduct } = useCart()
+
+  // const handleAdd = () => {
+  //   if (isInCart) {
+  //     removeCartProduct(product.id)
+  //     mzToast('Panier Mazou', `Article retiré !`, 'default')
+  //   } else {
+  //     addCartProduct({
+  //       cartID: product.id,
+  //       cartPrice: product.new_price,
+  //       cartQty: 1,
+  //     })
+  //     mzToast('Panier Mazou', `Article ajouté !`, 'default')
+  //   }
+  // }
+  // const isInCart = cart.some((c) => c.cartID === product.id)
+  // const isAdded = !!isInCart
 
   return (
     <>
@@ -66,19 +92,6 @@ export default async function Page({
           {'<'} Retourner à l'acceuil
         </Link>
       </div>
-      {/* <Breadcrumbs separator="›" aria-label="breadcrumb">
-          <Link underline="hover" color="inherit" href="/">
-            Home
-          </Link>
-          <Link
-            underline="hover"
-            color="inherit"
-            href="/material-ui/getting-started/installation/"
-          >
-            {searchParams.categorie}
-            </Link>
-            <Typography sx={{ color: 'text.primary' }}>Product</Typography>
-            </Breadcrumbs> */}
       <div className="mz_container">
         <div className="mz_container-body mz_container-resp">
           <div className="mz_container-bloc p-5 pt-7 uppercase text-xl font-bold">
@@ -89,26 +102,67 @@ export default async function Page({
               <ImageSlider contentImages={product.images} />
             </div>
             <div className="container-slider_body grow space-y-4 px-2">
-              <div>
-                <span className="mz_promotionBand">
-                  {product.old_price && 'En promotion !'}
-                </span>
-              </div>
+              {showPromo && (
+                <div>
+                  <span className="mz_promotionBand">
+                    {product.old_price && 'En promotion !'}
+                  </span>
+                </div>
+              )}
               <div className="flex flex-col xs:flex-row lg:flex-col xl:flex-row gap-x-4 xl:items-center">
                 <span className="text-3xl font-black">
                   {formatPrice(newPrice)} FCFA
                 </span>
-                <div className="flex gap-2 items-center">
-                  <span className="line-through text-lg text-gray-700 dark:text-gray-300 order-2 sm:order-1">
-                    {formatPrice(oldPrice)} F
-                  </span>
-                  <span className="mz_promotionBand order-1 sm:order-2">
-                    -{promo}%
-                  </span>
-                </div>
+                {showPromo && (
+                  <div className="flex gap-2 items-center">
+                    <span className="line-through text-lg text-gray-700 dark:text-gray-300 order-2 sm:order-1">
+                      {formatPrice(oldPrice)} F
+                    </span>
+                    <span className="mz_promotionBand order-1 sm:order-2">
+                      -{promo}%
+                    </span>
+                  </div>
+                )}
               </div>
               <div>
-                <WhatsAppButton />
+                <div>
+                  <WhatsAppButton number={mz_Phone} />
+                </div>
+                {/* <div>
+                  <Button
+                    color="default"
+                    // className="bg-gray-200/80 hover:bg-brand-primary-500 dark:text-white w-full sm:w-auto flex-1 dark:text-white dark:hover:border-brand-primary-400 dark:bg-dark-btn dark:hover:bg-brand-primary-500/70 opacity-100 hover:opacity-100 text-black hover:text-white"
+                    className={`${isAdded ? 'bg-gray-200/80 dark:bg-dark-btn' : 'bg-brand-primary-500/20 dark:bg-dark-div2'} hover:bg-brand-primary-500 dark:text-white w-full sm:w-auto flex-1 dark:text-white dark:hover:border-brand-primary-400 dark:hover:bg-brand-primary-500/70 opacity-100 hover:opacity-100 text-black hover:text-white`}
+                    variant="flat"
+                    radius="sm"
+                    onPress={handleAdd}
+                  >
+                    {isAdded ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24px"
+                        viewBox="0 -960 960 960"
+                        width="24px"
+                        fill="#B7B7B7"
+                      >
+                        <path d="M360-640v-80h240v80H360ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z" />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24px"
+                        viewBox="0 -960 960 960"
+                        width="24px"
+                        fill="#B7B7B7"
+                      >
+                        <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z" />
+                      </svg>
+                    )}
+                    <span className="sm:inline hidden">
+                      {isAdded ? 'Retirer du panier' : 'Ajouter au panier'}
+                    </span>
+                  </Button>
+                </div> */}
               </div>
               <div className="space-y-2">
                 <h3 className="font-bold">Tags du produit</h3>

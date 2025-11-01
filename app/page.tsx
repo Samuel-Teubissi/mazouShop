@@ -1,22 +1,7 @@
 'use client'
 
-import { Link } from '@heroui/link'
-import { Snippet } from '@heroui/snippet'
-import { Code } from '@heroui/code'
-
-import { title, subtitle } from '@/components/primitives'
-import { Card, CardHeader, CardBody, CardFooter } from '@heroui/card'
-import Produits from './dataMazou.json'
-// import Image from 'next/image'
 import { SearchInput } from '@/components/SearchInput'
-import { cn, formatPrice } from '@/config/utils'
-import { mz_button as buttonStyles } from '@/components/primitives'
-import { Image } from '@heroui/image'
-import MazouCard from '@/components/MazouCard'
-import { TextEffect } from '@/components/motion-primitives/text-effect'
-import { motion } from 'framer-motion'
 import { forwardRef, useEffect, useState } from 'react'
-import { PrismaClient } from '@/generated/prisma'
 import AllProducts from '@/components/AllProducts'
 import type { Prisma } from '@/generated/prisma/client'
 import { useRouter } from 'next/navigation'
@@ -53,14 +38,6 @@ export default function Home() {
     fetch(`/api/products?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => {
-        // const filteredProducts = data.filter(
-        //   (product: ProductWithCategory) =>
-        //     query
-        //       ? product.title.toLowerCase().includes(query.toLowerCase())
-        //       : true,
-        //   // && (queryParams.category && product.product_tags.includes(queryParams.category))
-        // )
-        // console.log('queryParams', queryParams, filteredProducts)
         setProductsResults(data)
       })
       .finally(() => setLoadingProducts(false))

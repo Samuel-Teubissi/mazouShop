@@ -78,7 +78,7 @@ export const SearchInput = ({ onQueryChange }: newQueryProps) => {
   return (
     <>
       <form
-        className="w-full md:w-[700] p-1 rounded-md bg-white flex"
+        className="w-full md:w-[700] p-1 rounded-md bg-white flex items-center mx-auto"
         onSubmit={handleSearch}
       >
         <input

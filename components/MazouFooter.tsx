@@ -1,4 +1,5 @@
 import { formatPrice } from '@/config/utils'
+// import Link from 'next/link'
 import { Link } from '@heroui/link'
 
 export const MazouFooter = () => {
@@ -7,14 +8,14 @@ export const MazouFooter = () => {
     <footer className="bg-[#111] text-white">
       <div className="max-w-7xl mx-auto w-full flex flex-col justify-center text-center md:text-left py-3 px-5 lg:px-20 pt-14 pb-28 gap-8">
         <div>
-          <Link
-            // isExternal
-            className="flex items-center justify-center md:justify-normal gap-1 text-brand-primary-400"
-            href="/"
-            title="Mazou Homepage"
-          >
-            <span className="mr-4">LOGO</span>
-            <p className="font-bold hidden md:block">Mazou Shop</p>
+          <Link href="/">
+            <img
+              src="/MazouAppIcon.svg"
+              title="Mazou Homepage"
+              alt="Mazou Icon"
+              width={200}
+              height={200}
+            />
           </Link>
           <div>MazouShop - La boutique en un click !</div>
         </div>
@@ -51,7 +52,9 @@ export const MazouFooter = () => {
           </div>
         </div>
       </div>
-      <div className="copyright w-full text-center py-3">Copyright © 2025</div>
+      <div className="copyright w-full text-center py-3">
+        Copyright © {new Date().getFullYear()}
+      </div>
     </footer>
   )
 }
