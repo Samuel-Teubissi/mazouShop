@@ -12,6 +12,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function mzToast(
+  title = 'Admin',
   description: string,
   color?:
     | 'success'
@@ -23,10 +24,22 @@ export function mzToast(
     | 'danger',
 ) {
   addToast({
-    title: 'Admin',
+    title: title,
     description,
     timeout: 3000,
     shouldShowTimeoutProgress: true,
+    variant: 'solid',
+    classNames: {
+      base: cn([
+        'bg-white dark:bg-dark-div dark:text-white',
+        // "border border-l-8 rounded-md rounded-l-none",
+        // "flex flex-col items-start",
+        // "border-primary-200 dark:border-primary-100 border-l-primary",
+      ]),
+      title: 'dark:text-gray-300',
+      description: 'dark:text-white',
+      icon: 'fill-current',
+    },
     color,
   })
 }

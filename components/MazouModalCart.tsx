@@ -75,15 +75,15 @@ export const MazouModalCart = ({
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1 mz_Heading px-0 ml-4 dark:bg-dark-div">
-              Votre Panier {cart.length && `(${cart.length} article(s)')`}
+              Votre Panier {cart.length > 0 && `(${cart.length} article(s))`}
             </ModalHeader>
             <ModalBody>
               {isLoadingCart ? (
-                <div className="w-full h-24 flex justify-center items-center">
+                <div className="w-full h-32 flex justify-center items-center">
                   <Spinner variant="gradient" color="danger" />
                 </div>
               ) : totalCartItems === 0 ? (
-                <div className="w-full h-24 flex justify-center items-center bg-gray-100/50">
+                <div className="w-full h-32 flex justify-center items-center">
                   Votre panier est vide.
                 </div>
               ) : (
@@ -147,7 +147,7 @@ export const MazouModalCart = ({
                 </div>
               )}
             </ModalBody>
-            <ModalFooter className="gap-10 border-t border-gray-300 dark:border-gray-800">
+            <ModalFooter className="gap-10 border-t border-gray-300 dark:border-gray-700">
               <div className="border-b-2 border-brand-primary-500 flex items-center px-4 gap-2">
                 <span>TOTAL:</span>
                 <span className="text-2xl font-bold  min-w-fit">

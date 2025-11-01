@@ -190,7 +190,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const removeCartProduct = (id: string | number) => {
     setCart((prev) => {
       const newCart = prev.filter((item) => item.cartID !== id)
-      fetchEnrichedData(newCart)
+      //   fetchEnrichedData(newCart)
       return newCart
     })
   }

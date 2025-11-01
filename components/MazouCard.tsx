@@ -57,10 +57,10 @@ export default function MazouCard(props: { Item: Product }) {
   const handleAdd = () => {
     if (isInCart) {
       removeCartProduct(item.id)
-      mzToast(`Article retiré du panier !`, 'default')
+      mzToast('Panier Mazou', `Article retiré !`, 'default')
     } else {
       addCartProduct({ cartID: item.id, cartPrice: item.new_price, cartQty: 1 })
-      mzToast(`Article ajouté au panier !`, 'default')
+      mzToast('Panier Mazou', `Article ajouté !`, 'default')
     }
   }
   // 1. Déterminer si le produit est déjà dans le panier
@@ -132,7 +132,7 @@ export default function MazouCard(props: { Item: Product }) {
           <Button
             color="default"
             // className="bg-gray-200/80 hover:bg-brand-primary-500 dark:text-white w-full sm:w-auto flex-1 dark:text-white dark:hover:border-brand-primary-400 dark:bg-dark-btn dark:hover:bg-brand-primary-500/70 opacity-100 hover:opacity-100 text-black hover:text-white"
-            className={`${isAdded ? 'bg-gray-200/80' : 'bg-brand-primary-500/20'} hover:bg-brand-primary-500 dark:text-white w-full sm:w-auto flex-1 dark:text-white dark:hover:border-brand-primary-400 dark:bg-dark-btn dark:hover:bg-brand-primary-500/70 opacity-100 hover:opacity-100 text-black hover:text-white`}
+            className={`${isAdded ? 'bg-gray-200/80 dark:bg-dark-btn' : 'bg-brand-primary-500/20 dark:bg-dark-div2'} hover:bg-brand-primary-500 dark:text-white w-full sm:w-auto flex-1 dark:text-white dark:hover:border-brand-primary-400 dark:hover:bg-brand-primary-500/70 opacity-100 hover:opacity-100 text-black hover:text-white`}
             variant="flat"
             radius="sm"
             onPress={handleAdd}
