@@ -25,6 +25,7 @@ export default function Error({
 
         <Button
           color="default"
+          variant="flat"
           onPress={
             // Attempt to recover by trying to re-render the segment
             () => reset()

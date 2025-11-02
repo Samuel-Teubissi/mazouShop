@@ -105,6 +105,7 @@ export default function BlogPage() {
           profits: '',
           caracteristics: '',
         })
+        setFiles([])
         // alert('Fichiers envoyés !')
       } else {
         console.error('Erreur serveur :', await res.text())
