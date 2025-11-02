@@ -70,6 +70,18 @@ export const SearchInput = ({ onQueryChange }: newQueryProps) => {
     [selectedCategory],
   )
 
+  // Vérifier si l'url change dynaquement et modifier la query en conséquence
+  useEffect(() => {
+    const changedQuery = searchParams.get('q') || ''
+    const changedCateg = searchParams.get('categ') || ''
+    if (changedQuery != query || changedCateg != selectedCategory) {
+      setQuery(changedQuery)
+      setSelectedCategory(changedCateg)
+      // updateURL(changedQuery, changedCateg)
+      // onQueryChange?.({ query: changedQuery, category: changedCateg })
+    }
+  }, [searchParams])
+
   useEffect(() => {
     updateURL(query, selectedCategory)
     onQueryChange?.({ query, category: selectedCategory })

@@ -4,6 +4,8 @@ import { Link } from '@heroui/link'
 
 export const MazouFooter = () => {
   const mz_Phone = formatPrice(Number(process.env.MAZOU_PHONE))
+  const linksFooter = ['Confort', 'Portable', 'Rangement', 'Soins', 'Smart']
+
   return (
     <footer className="bg-[#111] text-white">
       <div className="max-w-7xl mx-auto w-full flex flex-col justify-center text-center md:text-left py-3 px-5 lg:px-20 pt-14 pb-28 gap-8">
@@ -19,7 +21,7 @@ export const MazouFooter = () => {
           </Link>
           <div>MazouShop - La boutique en un click !</div>
         </div>
-        <div className="mz_footer-links grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4">
+        <div className="mz_footer-links flex flex-col md:flex-row gap-y-4 gap-x-24">
           <div className="space-y-1 md:col-span-2 lg:col-auto flex flex-col items-center md:items-start gap-y-1">
             <div>Payez facilement avec les services locaux</div>
             <div>
@@ -34,6 +36,19 @@ export const MazouFooter = () => {
             </Link>
           </div>
           <div className="flex flex-col items-center md:items-start gap-y-2">
+            <div className="text-brand-primary-400 mb-1">Catégories</div>
+            {linksFooter.map((link, index) => (
+              <Link key={index} href={`/?categ=${link}`}>
+                {link}
+              </Link>
+            ))}
+            {/* <Link>Sport</Link>
+            <Link>Bien-être et santé</Link>
+            <Link>Accessoires</Link>
+            <Link>électonique</Link>
+            <Link>électonique</Link> */}
+          </div>
+          <div className="flex flex-col items-center md:items-start gap-y-2">
             <div className="text-brand-primary-400 mb-1">Liens Utiles</div>
             <Link href="/">Acceuil</Link>
             {/* <Link onClick={}>Mon panier</Link> */}
@@ -42,13 +57,6 @@ export const MazouFooter = () => {
             </Link>
             <Link href="/legal/refund-policy">Politique de remboursement</Link>
             <Link href="/about">A propos de nous</Link>
-          </div>
-          <div className="flex flex-col items-center md:items-start gap-y-2">
-            <div className="text-brand-primary-400 mb-1">Catégories</div>
-            <Link>Sport</Link>
-            <Link>Bien-être et santé</Link>
-            <Link>Accessoires</Link>
-            <Link>électonique</Link>
           </div>
         </div>
       </div>

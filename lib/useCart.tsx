@@ -15,7 +15,7 @@ import Cookies from 'js-cookie'
 // ----------------------
 
 export interface CartProduct {
-  cartID: string | number
+  cartID: number
   cartQty: number
   cartPrice: number
 }
@@ -55,6 +55,11 @@ interface CartContextType {
 // ----------------------
 
 const COOKIE_NAME = 'userCart'
+const COOKIE_OPTIONS = {
+  expires: 7,
+  sameSite: 'Lax' as const,
+  path: '/',
+}
 const PRODUCT_API_ENDPOINT = '/api/cart'
 
 // ----------------------
@@ -69,6 +74,16 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [isLoadingCart, setIsLoadingCart] = useState(true)
   const [lastFetchedCart, setLastFetchedCart] = useState<CartProduct[]>([])
 
+  const saveCartToCookie = (cart: CartProduct[]): void => {
+    Cookies.set(COOKIE_NAME, JSON.stringify(cart), COOKIE_OPTIONS)
+  }
+  const updateCart = useCallback((newCart: CartProduct[]) => {
+    saveCartToCookie(newCart)
+    // const parsed = JSON.parse(COOKIE_NAME) as CartProduct[]
+    // setCart(newCart)
+
+    // fetchEnrichedData(newCart)
+  }, [])
   // ----------------------
   // 🔸 Charger depuis les cookies
   // ----------------------
@@ -90,15 +105,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   // ----------------------
   // 🔸 Sauvegarde automatique dans les cookies
   // ----------------------
-  useEffect(() => {
-    if (!isLoadingCart) {
-      Cookies.set(COOKIE_NAME, JSON.stringify(cart), {
-        expires: 7,
-        sameSite: 'Lax',
-        path: '/',
-      })
-    }
-  }, [cart, isLoadingCart])
+
+  // useEffect(() => {
+  //   if (!isLoadingCart) {
+  //     Cookies.set(COOKIE_NAME, JSON.stringify(cart), )
+  //   }
+  // }, [cart, isLoadingCart])
 
   // ----------------------
   // 🔸 Récupération des données enrichies
@@ -132,8 +144,34 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
         const productDetails: EnrichedCartItem[] = await response.json()
 
+        // 1. Identifier les IDs qui ont été trouvés dans la DB
+        const foundIds = new Set(productDetails.map((p) => p.id))
+
+        // 2. Nettoyer le panier (retirer les produits orphelins)
+        const cleanedCart = cartToFetch.filter((item) =>
+          foundIds.has(item.cartID),
+        )
+        // console.log(
+        //   'productDetails',
+        //   productDetails,
+        //   'cartToFetch',
+        //   cartToFetch,
+        //   'foundIds',
+        //   foundIds,
+        //   'cleanedCart',
+        //   cleanedCart,
+        // )
+
+        // 3. Mettre à jour l'état si un nettoyage a eu lieu
+        if (cleanedCart.length !== cartToFetch.length) {
+          // updateCart(cleanedCart) // Met à jour l'état 'cart' et le cookie
+          saveCartToCookie(cleanedCart)
+        }
+
         setEnrichedCart(productDetails)
-        setLastFetchedCart(cartToFetch) // 🔹 mémoriser le panier fetché
+        setLastFetchedCart(cartToFetch)
+
+        // 🔹 mémoriser le panier fetché
         // // Fusionner le panier local avec les détails
         // const enriched = currentCart
         //   .map((cartItem) => {
@@ -157,13 +195,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
         // setEnrichedCart(enriched)
       } catch (err) {
-        console.error('Erreur de fetchEnrichedData:', err)
+        console.error('Erreur de fillCart:', err)
         setEnrichedCart([])
       } finally {
         setIsLoadingCart(false)
       }
     },
-    [cart],
+    [cart, lastFetchedCart],
   )
 
   // ----------------------
@@ -182,6 +220,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         newCart.push({ ...product, cartQty: quantity })
       }
 
+      saveCartToCookie(newCart)
       fetchEnrichedData(newCart)
       return newCart
     })
@@ -191,6 +230,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCart((prev) => {
       const newCart = prev.filter((item) => item.cartID !== id)
       //   fetchEnrichedData(newCart)
+      saveCartToCookie(newCart)
       return newCart
     })
   }

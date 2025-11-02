@@ -18,6 +18,7 @@ import Image from 'next/image'
 import { useEffect } from 'react'
 import { Spinner } from '@heroui/spinner'
 import WhatsAppButton from './WhatsappButton'
+import { debounce } from 'lodash'
 
 export const MazouModalCart = ({
   isOpen,
@@ -61,13 +62,16 @@ export const MazouModalCart = ({
   useEffect(() => {
     if (isOpen) {
       fetchEnrichedData(cart) // 🔁 refetch les données du panier
+      // debounce((cart) => fetchEnrichedData(cart), 500)
     }
   }, [isOpen, fetchEnrichedData])
 
   const mz_Phone = 696771089
-  const cartProductsName = enrichedCart.map((p) => p.title).join('\n')
+  const cartProductsName = enrichedCart
+    .map((p) => `• ${p.title} : ${p.new_price} Fcfa`)
+    .join('\n')
   const zapMessage =
-    'Bonjour je viens du site Mazou et je suis intéressé par le porduit \n' +
+    'Bonjour je viens du site Mazou et je suis intéressé par ces porduits : \n\n' +
     cartProductsName
 
   return (
@@ -82,7 +86,9 @@ export const MazouModalCart = ({
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1 mz_Heading px-0 ml-4 dark:bg-dark-div">
-              Votre Panier {cart.length > 0 && `(${cart.length} article(s))`}
+              Votre Panier{' '}
+              {cart.length > 0 &&
+                `(${cart.length} article${cart.length > 1 ? 's' : ''})`}
             </ModalHeader>
             <ModalBody>
               {isLoadingCart ? (

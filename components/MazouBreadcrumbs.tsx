@@ -1,3 +1,4 @@
+import { CircleArrowLeftIcon } from 'lucide-react'
 import Link from 'next/link'
 
 export const MazouBreadcrumbs = () => {
@@ -6,9 +7,10 @@ export const MazouBreadcrumbs = () => {
       <Link
         href="/"
         title="Mazou Homepage"
-        className="hover:text-brand-primary-400"
+        className="hover:text-brand-primary-400 flex gap-2 justify-center"
       >
-        {'<'} Retourner à l'acceuil
+        <CircleArrowLeftIcon strokeWidth={1.5} width={24} height={24} />{' '}
+        <span>Retourner à l'acceuil</span>
       </Link>
     </div>
   )

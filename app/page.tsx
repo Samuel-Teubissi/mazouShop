@@ -31,17 +31,36 @@ export default function Home() {
   // const [filteredResults, setFilteredResults] = useState();
 
   const { query, category } = queryParams
+  const params = new URLSearchParams()
+  if (query) params.set('q', query)
+  if (category) params.set('categ', category)
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`/api/products?${params.toString()}`)
+
+      if (!response.ok) {
+        throw new Error(
+          "Erreur lors de la récupération des produits de la page d'acceuil",
+        )
+      }
+      const data = await response.json()
+      setProductsResults(data)
+      setLoadingProducts(false)
+    } catch (err) {
+      console.error('Erreur de fillCart:', err)
+    }
+    // .finally(() => setLoadingProducts(false))
+  }
+
   useEffect(() => {
-    const params = new URLSearchParams()
-    if (query) params.set('q', query)
-    if (category) params.set('categ', category)
     // router.replace(`?${params.toString()}`, { scroll: false })
-    fetch(`/api/products?${params.toString()}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setProductsResults(data)
-      })
-      .finally(() => setLoadingProducts(false))
+    // fetch(`/api/products?${params.toString()}`)
+    // .then((res) => res.json())
+    // .then((data) => {
+    //   setProductsResults(data)
+    // })
+    // .finally(() => setLoadingProducts(false))
+    fetchData()
   }, [query, category])
 
   return (

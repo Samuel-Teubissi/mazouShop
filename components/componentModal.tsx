@@ -12,34 +12,51 @@ import { useCart } from '@/lib/useCart'
 import { useEffect, useState } from 'react'
 import { useDisclosure } from '@heroui/modal'
 import { MazouModalCart } from './MazouModalCart'
+import { Badge } from '@heroui/badge'
 
 export const Modal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { cart } = useCart()
 
   // const [cartProducts, setCartProducts] = useState([]);
   // const [loadingCartProducts, setLoadingCartProducts] = useState(true)
 
   return (
-    <>
-      <Button
-        // as={Link}
-        color="default"
-        // href="#"
-        variant="flat"
-        className={clsx(
-          mz_button({
-            hoverText: 'secondary',
-            hoverBkg: true,
-            border: true,
-          }),
-          'min-w-auto mz_dark-btn rounded-lg',
-        )}
-        startContent={<ShoppingCart className="w-4 h-4" />}
-        onPress={() => onOpen()}
+    <div className="relative">
+      <Badge
+        color="danger"
+        content={cart.length}
+        isInvisible={cart.length < 1}
+        size="md"
+        // shape="circle"
       >
-        <span className="hidden md:block">Panier</span>
-      </Button>
+        <Button
+          // as={Link}
+          color="default"
+          // href="#"
+          variant="flat"
+          className={clsx(
+            mz_button({
+              hoverText: 'secondary',
+              hoverBkg: true,
+              border: true,
+            }),
+            'min-w-auto mz_dark-btn rounded-lg relative',
+          )}
+          startContent={<ShoppingCart className="w-4 h-4" />}
+          onPress={() => onOpen()}
+        >
+          <span className="hidden md:block">Panier</span>
+        </Button>
+      </Badge>
       <MazouModalCart isOpen={isOpen} onClose={onClose} />
-    </>
+      {/* <span className="absolute -top-0.5 -right-0.5">
+          {cart.length > 0 && cart.length}
+        </span> */}
+
+      {/* {cart.length > 0 && (
+          {cart.length}
+      )} */}
+    </div>
   )
 }

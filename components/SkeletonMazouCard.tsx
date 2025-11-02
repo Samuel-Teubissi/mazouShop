@@ -8,7 +8,7 @@ import { EyeIcon, ShoppingBagIcon, ShoppingCart } from 'lucide-react'
 
 export default function SkeletonMazouCard() {
   return (
-    <div className="w-full border border-transparent mz_trans md:shadow-small rounded-large text-foreground relative dark:bg-dark-div bg-white">
+    <div className="w-full border border-transparent mz_trans md:shadow-small rounded-large text-foreground relative dark:bg-dark-div bg-white cursor-pointer">
       <div className="absolute flex flex-col top-1/3 -left-2 gap-1 font-bold text-lg z-10">
         <div className="mz_priceBand bg-gray-400/75 animate-pulse">
           <div className="mz_priceBand-tip-secondary h-6 w-12"></div>

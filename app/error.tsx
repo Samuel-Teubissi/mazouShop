@@ -18,7 +18,7 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="mz_container-body px-3 mb-8">
+    <div className="mz_container-body px-3 mb-8 pt-[120px]">
       <div className="min-h-75 w-full flex flex-col justify-center items-center bg-gray-200/40 dark:bg-dark-div gap-2">
         <OctagonAlert strokeWidth={1.5} width={100} height={100} />
         <h2>Une erreur s'est produite</h2>
