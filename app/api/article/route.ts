@@ -1,6 +1,7 @@
 import { handleFileUpload } from '@/components/HandleFileUpload'
-import { PrismaClient } from '@/generated/prisma'
-import { prisma } from '@/lib/clientPrisma'
+// import { PrismaClient } from '@/generated/prisma'
+// import { prisma } from '@/lib/clientPrisma'
+import prisma from '@/lib/prisma'
 import { NextResponse } from 'next/server'
 
 // Gestion de la requête POST

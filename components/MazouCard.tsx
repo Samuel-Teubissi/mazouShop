@@ -14,7 +14,7 @@ import { useCart } from '@/lib/useCart'
 import { mzToast } from '@/lib/utils'
 import { CartProduct } from '@/types/useCartType'
 import { useMemo } from 'react'
-import { useCartStore } from '@/lib/cartStore'
+// import { useCartStore } from '@/lib/cartStore'
 
 interface Product {
   id: number

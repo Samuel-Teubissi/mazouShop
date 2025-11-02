@@ -1,5 +1,6 @@
 import MazouCard from './MazouCard'
-import type { Prisma } from '@/generated/prisma/client'
+// import type { Prisma } from '@/generated/prisma/client'
+import { Prisma } from '@prisma/client'
 
 type ProductWithCategory = Prisma.ProductGetPayload<{
   include: {

@@ -7,7 +7,7 @@ import { HeroUIProvider } from '@heroui/system'
 import { useRouter } from 'next/navigation'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import { ToastProvider } from '@heroui/toast'
-import CartHydrationWrapper from '@/components/CartHydrationWrapper'
+// import CartHydrationWrapper from '@/components/CartHydrationWrapper'
 
 export interface ProvidersProps {
   children: React.ReactNode

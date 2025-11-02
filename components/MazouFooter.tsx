@@ -13,8 +13,8 @@ export const MazouFooter = () => {
               src="/MazouAppIcon.svg"
               title="Mazou Homepage"
               alt="Mazou Icon"
-              width={200}
-              height={200}
+              width={150}
+              height={150}
             />
           </Link>
           <div>MazouShop - La boutique en un click !</div>

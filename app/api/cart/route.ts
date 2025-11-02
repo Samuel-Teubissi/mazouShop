@@ -1,6 +1,7 @@
 // pages/api/products/details.ts
 
-import { prisma } from '@/lib/clientPrisma'
+// import { prisma } from '@/lib/clientPrisma'
+import prisma from '@/lib/prisma'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { NextRequest, NextResponse } from 'next/server'
 

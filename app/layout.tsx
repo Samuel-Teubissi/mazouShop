@@ -48,7 +48,7 @@ export default function RootLayout({
         <CartProvider>
           <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
             <div className="relative flex flex-col min-h-screen">
-              <header className="bg-white dark:bg-dark-div backdrop-blur-xs text-brand-primary-400 fixed py-5 w-full z-50">
+              <header className="bg-white dark:bg-dark-div backdrop-blur-xs text-brand-primary-400 fixed py-5 w-full z-50 shadow-md">
                 <div className="flex items-center justify-between max-w-6xl px-3 md:px-6 mx-auto">
                   <div className="flex items-center">
                     <Link href="/">
@@ -57,8 +57,8 @@ export default function RootLayout({
                         // className="h-20"
                         title="Mazou Homepage"
                         alt="Mazou Icon"
-                        width={200}
-                        height={200}
+                        width={150}
+                        height={150}
                       />
                     </Link>
                     {/* <span className="mr-4">LOGO</span>

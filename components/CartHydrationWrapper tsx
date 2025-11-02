@@ -1,12 +1,13 @@
-'use client'
+// 'use client'
 
-import React from 'react'
-import { useHydrationCart } from './useHydrationCart'
-import { useCartStore } from '@/lib/cartStore'
+// import React from 'react'
+// import { useHydrationCart } from './useHydrationCart'
+// import { useCartStore } from '@/lib/cartStore'
 // 🚨 Importez vos vrais composants ici
 // import CartBadge from './CartBadge';
 // import CartModalManager from './CartModalManager';
 
+/*
 interface CartHydrationWrapperProps {
   children: React.ReactNode
 }
@@ -17,7 +18,8 @@ interface CartHydrationWrapperProps {
  * gèrent leur propre affichage conditionnel basé sur l'état du panier.
  * Si le panier est en cours de chargement, il peut renvoyer null ou un composant
  * de chargement global si le children dépend strictement de l'état hydraté.
- */
+ * 
+
 const CartHydrationWrapper: React.FC<CartHydrationWrapperProps> = ({
   children,
 }) => {
@@ -41,3 +43,5 @@ const CartHydrationWrapper: React.FC<CartHydrationWrapperProps> = ({
 }
 
 export default CartHydrationWrapper
+
+*/

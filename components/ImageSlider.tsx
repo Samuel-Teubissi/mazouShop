@@ -7,7 +7,8 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import Produits from '../app/dataMazou.json'
 import { cn } from '@/config/utils'
 import { ChevronsLeft, ChevronsRight } from 'lucide-react'
-import { ProductImage } from '../generated/prisma/client'
+// import { ProductImage } from '../generated/prisma/client'
+import { ProductImage } from '@prisma/client'
 
 type ArrowProps = {
   onClick: () => void

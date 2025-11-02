@@ -1,7 +1,7 @@
 'use client'
 
 import { formatPrice } from '@/config/utils'
-import { useCartStore } from '@/lib/cartStore'
+// import { useCartStore } from '@/lib/cartStore'
 import { useCart } from '@/lib/useCart'
 import { CartManagerHook } from '@/types/useCartType'
 import { Button } from '@heroui/button'

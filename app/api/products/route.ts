@@ -1,8 +1,10 @@
 // app//products/route.ts
 import { NextResponse } from 'next/server'
-import { PrismaClient } from '@/generated/prisma/client'
+// import { PrismaClient } from '@/generated/prisma/client'
+// import { Prisma } from '@prisma/client';
 // import { NextRequest, NextResponse } from 'next'
-import { prisma } from '@/lib/clientPrisma'
+// import { prisma } from '@/lib/clientPrisma'
+import prisma from '@/lib/prisma'
 
 // const prisma = new PrismaClient()
 

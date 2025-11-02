@@ -1,0 +1,334 @@
+[
+  {
+    "id": 1,
+    "title": "Casque audio Felixx Aerix 2",
+    "top_tag": "Tech",
+    "img": [
+      "/images/casque-v1.png",
+      "/images/casque-v2.jpg",
+      "/images/casque-v3.jpeg"
+    ],
+    "new_price": "15000",
+    "old_price": "25000",
+    "product_category": "audio",
+    "product_note": "5",
+    "testimonial": "27",
+    "description": "Plongez dans une expérience sonore immersive avec ce casque audio sans fil au design élégant et moderne. Son arceau et ses coussinets en similicuir doux garantissent un confort exceptionnel, même lors de longues sessions d'écoute. Grâce à ses haut-parleurs de haute qualité, profitez de basses profondes, d'aigus clairs et d'un équilibre parfait pour tous les genres musicaux. <br /><br />Conçu pour le quotidien comme pour les moments de détente, il offre :<br /> -**Connexion Bluetooth rapide et stable**, pour une liberté totale de mouvement <br /> -**Autonomie longue durée**, idéale pour la musique, les appels ou les films <br /> -**Design ergonomique**, justable et léger <br /> -**Finition élégante**, qui s'intègre parfaitement à votre style <br /><br /> Que vous soyez en voyage, au bureau ou chez vous, ce casque est le compagnon idéal pour un son d'exception et un confort absolu.",
+    "product_profits": [
+      "Casque audio sans fil",
+      "Autonomie longue",
+      "Design ergonomique",
+      "Finition élégante"
+    ],
+    "product_tags": ["Confort", "Portable", "Smart"],
+    "product_caracteristics": [
+      "Disponible en vert et en bleu",
+      "Recharge sans fil",
+      "Chargeur USB-C",
+      "13h d'autonomie"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Tapis de Yoga Éco-Responsable Sérénité",
+    "top_tag": "Sport",
+    "img": ["/images/tapis-yoga-v1.png", "/images/tapis-yoga-v2.jpg"],
+    "new_price": "4500",
+    "old_price": "6000",
+    "product_category": "sport & bien-être",
+    "product_note": "5",
+    "testimonial": "158",
+    "description": "Améliorez votre pratique avec ce **tapis de yoga antidérapant**, fabriqué à partir de matériaux écologiques et durables. Son épaisseur de 6mm assure un amorti parfait pour vos articulations, que vous soyez débutant ou confirmé. Léger et facile à transporter, il est parfait pour la maison, le studio ou l'extérieur. <br /><br />Un choix idéal pour le corps et la planète :<br /> -**Matériau TPE non toxique et recyclable** <br /> -**Surface texturée double-face** pour une adhérence maximale <br /> -**Facile à nettoyer** et résistant à l'humidité <br /> -**Sangle de transport** incluse <br /><br /> Trouvez l'équilibre parfait entre confort, performance et respect de l'environnement.",
+    "product_profits": [
+      "Amorti 6mm",
+      "Antidérapant",
+      "Éco-responsable",
+      "Léger et portable"
+    ],
+    "product_tags": ["Confort", "Soins", "Portable"],
+    "product_caracteristics": [
+      "Disponible en Rose Poudré et Bleu Nuit",
+      "Dimensions: 183cm x 61cm",
+      "Épaisseur: 6mm",
+      "Matériau TPE"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Mug Isotherme de Voyage Aventure",
+    "top_tag": "Maison",
+    "img": ["/images/mug-isotherme-v1.png", "/images/mug-isotherme-v2.jpg"],
+    "new_price": "2250",
+    "old_price": "3000",
+    "product_category": "cuisine & boisson",
+    "product_note": "5",
+    "testimonial": "89",
+    "description": "Gardez votre café **chaud pendant 6 heures** ou votre boisson fraîche **pendant 12 heures** avec ce mug isotherme en acier inoxydable à double paroi. Son couvercle hermétique anti-éclaboussures est parfait pour le trajet matinal. Robuste et élégant, il est l'accessoire zéro déchet essentiel de votre quotidien. <br /><br />Le compagnon idéal pour vos déplacements :<br /> -**Isolation sous vide à double paroi** <br /> -**Capacité de 500 ml**, idéale pour une grande tasse <br /> -**Base antidérapante** <br /> -**Sans BPA** et facile à démonter/nettoyer",
+    "product_profits": [
+      "Garde chaud/froid",
+      "Anti-fuite",
+      "Acier inoxydable",
+      "Zéro déchet"
+    ],
+    "product_tags": ["Portable", "Confort"],
+    "product_caracteristics": [
+      "Capacité 500 ml",
+      "Acier Inox 304",
+      "Disponible en noir et blanc",
+      "Couvercle à clapet sécurisé"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Chargeur Mural USB-C Rapide 65W (GaN)",
+    "top_tag": "Tech",
+    "img": ["/images/chargeur-rapide-v1.png", "/images/chargeur-rapide-v2.jpg"],
+    "new_price": "5500",
+    "old_price": "7500",
+    "product_category": "technologie & accessoires",
+    "product_note": "5",
+    "testimonial": "210",
+    "description": "Le chargeur idéal pour tous vos appareils. Grâce à la technologie **GaN (Nitrures de Gallium)**, il est **ultra-compact** et peut délivrer jusqu'à **65W de puissance**, suffisant pour recharger rapidement un ordinateur portable, une tablette ou un smartphone. Il dispose de deux ports (USB-C et USB-A) pour charger deux appareils simultanément. <br /><br />La rapidité et la compacité :<br /> -**Charge ultra-rapide** pour gain de temps <br /> -**Format de poche** pour le voyage <br /> -**Double port** pour plus de polyvalence <br /> -**Protection contre la surchauffe** et les courts-circuits",
+    "product_profits": [
+      "Puissance 65W",
+      "Technologie GaN (compact)",
+      "Double port USB-C/USB-A",
+      "Charge sécurisée"
+    ],
+    "product_tags": ["Portable", "Smart"],
+    "product_caracteristics": [
+      "Ports : 1x USB-C PD, 1x USB-A QC",
+      "Puissance max : 65W",
+      "Pliable pour le voyage",
+      "Coque blanche mat"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Ensemble de Stylos Gel Rétractables (Lot de 5)",
+    "top_tag": "Bureau",
+    "img": ["/images/stylos-gel-v1.png"],
+    "new_price": "800",
+    "old_price": "1200",
+    "product_category": "bureau & papeterie",
+    "product_note": "4",
+    "testimonial": "65",
+    "description": "Profitez d'une écriture douce et fluide avec cet ensemble de 5 stylos à encre gel. La pointe fine de **0.5mm** est parfaite pour des notes précises et le mécanisme **rétractable** évite les taches d'encre. Idéal pour l'école, le bureau ou le bullet journal. <br /><br />Le confort d'écriture au quotidien :<br /> -**Encre gel noire, séchage rapide** <br /> -**Grip en caoutchouc** pour une prise en main ergonomique <br /> -**Pointe extra fine 0.5mm** <br /> -**Corps opaque et élégant**",
+    "product_profits": [
+      "Écriture ultra-douce",
+      "Séchage rapide",
+      "Pointe fine 0.5mm",
+      "Lot économique"
+    ],
+    "product_tags": ["Rangement", "Confort"],
+    "product_caracteristics": [
+      "Couleur d'encre : Noire",
+      "Quantité : 5",
+      "Pointe : 0.5mm",
+      "Rétractable"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Savon Naturel Solide au Karité (Lot de 3)",
+    "top_tag": "Beauté",
+    "img": ["/images/savon-karite-v1.png", "/images/savon-karite-v2.jpg"],
+    "new_price": "1100",
+    "old_price": "1500",
+    "product_category": "hygiène & beauté",
+    "product_note": "5",
+    "testimonial": "345",
+    "description": "Un savon saponifié à froid, riche en **beurre de karité** pour hydrater et nourrir les peaux les plus sensibles. Sans huile de palme, sans conservateur ni parfum de synthèse, il offre une mousse onctueuse et laisse un léger parfum naturel. Un geste simple pour une salle de bain plus écologique. <br /><br />Le soin de la peau au naturel :<br /> -**Surgras et hydratant** <br /> -**100% naturel** et biodégradable <br /> -**Convient à toute la famille** <br /> -**Zéro déchet plastique**",
+    "product_profits": [
+      "Hydratation intense (Karité)",
+      "Saponifié à froid",
+      "Biodégradable",
+      "Lot économique"
+    ],
+    "product_tags": ["Soins", "Confort"],
+    "product_caracteristics": [
+      "Poids : 3 x 100g",
+      "Sans huile de palme",
+      "Parfum discret Lavande/Miel",
+      "Pour corps et visage"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Ampoule LED Connectée RGBW",
+    "top_tag": "Tech",
+    "img": [
+      "/images/ampoule-connectee-v1.png",
+      "/images/ampoule-connectee-v2.jpg"
+    ],
+    "new_price": "2900",
+    "old_price": "3900",
+    "product_category": "maison & décoration",
+    "product_note": "4",
+    "testimonial": "55",
+    "description": "Créez l'ambiance parfaite avec cette ampoule **LED Wi-Fi** qui vous permet de choisir parmi **16 millions de couleurs** (RGB) et toutes les nuances de blanc (W - chaud à froid). Contrôlez-la à la voix (Google Home, Alexa) ou via une application mobile. Facile à installer, elle remplace n'importe quelle ampoule standard (culot E27). <br /><br />Votre maison devient intelligente :<br /> -**Contrôle vocal et application** <br /> -**Dimmable (intensité réglable)** <br /> -**Programmation horaire** et scénarios <br /> -**Faible consommation** d'énergie",
+    "product_profits": [
+      "16 millions de couleurs",
+      "Contrôle Wi-Fi/Vocal",
+      "Économie d'énergie",
+      "Programmation facile"
+    ],
+    "product_tags": ["Smart", "Confort"],
+    "product_caracteristics": [
+      "Culot E27",
+      "Puissance 9W (équiv. 60W)",
+      "Couleurs : RGB + Blanc variable",
+      "Connexion Wi-Fi 2.4GHz"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Organiseur de Câbles Réutilisable (10 Pièces)",
+    "top_tag": "Bureau",
+    "img": ["/images/organiseur-cables-v1.png"],
+    "new_price": "650",
+    "old_price": "950",
+    "product_category": "bureau & technologie",
+    "product_note": "5",
+    "testimonial": "190",
+    "description": "Finis les nœuds et les fils emmêlés ! Ce kit de **10 attaches auto-agrippantes** en velcro vous aide à organiser tous les câbles de votre bureau, téléviseur ou tiroir. Réutilisables à l'infini et ajustables, elles sont indispensables pour un espace de travail propre et ordonné. <br /><br />L'organisation simplifiée :<br /> -**Velcro de haute qualité** <br /> -**Réutilisable et ajustable** <br /> -**Facile à utiliser** (pas d'adhésif) <br /> -**Longue durée de vie**",
+    "product_profits": [
+      "Démêlage facile",
+      "Réutilisable",
+      "Forte adhérence",
+      "10 pièces variées"
+    ],
+    "product_tags": ["Rangement", "Portable"],
+    "product_caracteristics": [
+      "Quantité : 10 pièces",
+      "Matériau : Nylon/Velcro",
+      "Couleur : Noir",
+      "Tailles variées (S, M, L)"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Boîte de Conservation Alimentaire en Verre (Lot de 3)",
+    "top_tag": "Maison",
+    "img": ["/images/boite-verre-v1.png", "/images/boite-verre-v2.jpg"],
+    "new_price": "2900",
+    "old_price": "3800",
+    "product_category": "cuisine & maison",
+    "product_note": "5",
+    "testimonial": "112",
+    "description": "Un lot essentiel pour votre cuisine : **trois boîtes en verre borosilicate** (résistant aux chocs thermiques) avec couvercles hermétiques. Parfaites pour le *meal prep*, elles passent directement du réfrigérateur au four (sans couvercle) ou au micro-ondes. Hygiéniques et sans BPA. <br /><br />Une conservation saine et durable :<br /> -**Verre ultra-résistant** (four, micro-ondes, congélateur) <br /> -**Couvercle clipsable 100% hermétique** <br /> -**Facile à nettoyer** (passe au lave-vaisselle) <br /> -**Sans BPA** (alternative saine au plastique)",
+    "product_profits": [
+      "Passe au four/micro-ondes",
+      "Hermétique et anti-fuite",
+      "Matériau sain (Verre)",
+      "Différentes tailles"
+    ],
+    "product_tags": ["Rangement", "Confort"],
+    "product_caracteristics": [
+      "3 tailles : 400ml, 800ml, 1200ml",
+      "Matériau : Verre Borosilicate",
+      "Couvercles en plastique sans BPA",
+      "Joints en silicone"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Mini Ventilateur Portable USB Rafraîchissement",
+    "top_tag": "Tech",
+    "img": ["/images/ventilateur-usb-v1.png"],
+    "new_price": "1500",
+    "old_price": "2000",
+    "product_category": "électronique & gadgets",
+    "product_note": "4",
+    "testimonial": "78",
+    "description": "Restez au frais où que vous soyez. Ce mini ventilateur compact est alimenté par **USB** (batterie incluse), offrant jusqu'à **6 heures d'autonomie**. Il dispose de **3 vitesses réglables** et d'une tête orientable pour un flux d'air parfait sur votre bureau, table de nuit ou en déplacement. <br /><br />Le souffle de fraîcheur :<br /> -**3 vitesses silencieuses** <br /> -**Batterie rechargeable (USB)** <br /> -**Format compact et léger** <br /> -**Base stable**",
+    "product_profits": [
+      "Ultra portable",
+      "3 vitesses",
+      "Silencieux",
+      "6h d'autonomie"
+    ],
+    "product_tags": ["Portable", "Confort"],
+    "product_caracteristics": [
+      "Batterie 2000 mAh",
+      "Recharge USB-C",
+      "3 niveaux de puissance",
+      "Couleur : Blanc"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Carnet de Notes A5 à Couverture Rigide",
+    "top_tag": "Bureau",
+    "img": ["/images/carnet-a5-v1.png", "/images/carnet-a5-v2.jpg"],
+    "new_price": "1200",
+    "old_price": "1800",
+    "product_category": "bureau & papeterie",
+    "product_note": "5",
+    "testimonial": "130",
+    "description": "Capturez vos idées avec ce carnet de haute qualité. Il est doté d'une **couverture rigide** résistante, de **192 pages lignées** en papier épais (100g/m²) résistant au *ghosting* et d'une pochette à soufflet à l'arrière. Un must-have pour les professionnels et les étudiants. <br /><br />L'outil parfait pour l'organisation :<br /> -**192 pages lignées** numérotées <br /> -**Papier 100g/m²** de qualité supérieure <br /> -**Fermeture par élastique** et marque-page ruban <br /> -**Pochette intérieure** pour documents",
+    "product_profits": [
+      "Papier épais (100g/m²)",
+      "Couverture rigide",
+      "Poches de rangement",
+      "Design épuré"
+    ],
+    "product_tags": ["Rangement", "Confort"],
+    "product_caracteristics": [
+      "Format A5 (148x210 mm)",
+      "192 pages lignées",
+      "Papier 100g/m²",
+      "Disponible en Gris Ardoise"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Pompe à Savon Automatique Sans Contact",
+    "top_tag": "Beauté",
+    "img": ["/images/pompe-savon-auto-v1.png"],
+    "new_price": "3500",
+    "old_price": "4900",
+    "product_category": "maison & hygiène",
+    "product_note": "5",
+    "testimonial": "95",
+    "description": "Améliorez l'hygiène de votre cuisine ou salle de bain. Ce distributeur utilise un **capteur infrarouge** pour délivrer la juste quantité de savon (liquide ou mousse) sans aucun contact, réduisant la propagation des germes. Son design moderne s'intègre parfaitement à tout décor. <br /><br />L'hygiène et la modernité :<br /> -**Distribution sans contact** (capteur infrarouge) <br /> -**Volume de savon réglable** <br /> -**Facile à remplir** <br /> -**Étanche** et résistant à l'humidité",
+    "product_profits": [
+      "Hygiène maximale",
+      "Sans contact",
+      "Réglage du volume",
+      "Design élégant"
+    ],
+    "product_tags": ["Soins", "Smart"],
+    "product_caracteristics": [
+      "Capacité 350 ml",
+      "Alimentation par piles AA",
+      "Détection Infrarouge 5cm",
+      "Matériau ABS étanche"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Pinceau de Maquillage Professionnel Teint Parfait",
+    "top_tag": "Beauté",
+    "img": ["/images/pinceau-maquillage-v1.png"],
+    "new_price": "1800",
+    "old_price": "2500",
+    "product_category": "hygiène & beauté",
+    "product_note": "5",
+    "testimonial": "102",
+    "description": "Obtenez un teint impeccable et sans traces avec ce pinceau à fond de teint. Ses **poils synthétiques ultra-doux** et très denses sont parfaits pour appliquer les formules liquides ou crèmes, offrant un fini naturel et uniforme. Son manche ergonomique assure une prise en main stable. <br /><br />L'outil essentiel pour un maquillage réussi :<br /> -**Poils synthétiques véganes et denses** <br /> -**Application uniforme et sans traces** <br /> -**Manche ergonomique** pour un contrôle optimal <br /> -**Facile à nettoyer**",
+    "product_profits": [
+      "Fini sans traces",
+      "Poils synthétiques véganes",
+      "Haute densité",
+      "Manche ergonomique"
+    ],
+    "product_tags": ["Soins", "Confort"],
+    "product_caracteristics": [
+      "Type : Pinceau plat et dense",
+      "Matériau : Poils synthétiques haute qualité",
+      "Usage : Fond de teint liquide/crème",
+      "Couleur : Noir mat"
+    ]
+  }
+]

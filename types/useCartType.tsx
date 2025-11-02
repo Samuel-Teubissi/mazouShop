@@ -1,5 +1,6 @@
 // types.ts
-import type { Prisma } from '@/generated/prisma/client'
+// import type { Prisma } from '@/generated/prisma/client'
+import { Prisma } from '@prisma/client'
 
 /**
  * Interface pour un Produit dans le panier.

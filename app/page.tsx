@@ -1,9 +1,10 @@
 'use client'
 
 import { SearchInput } from '@/components/SearchInput'
-import { forwardRef, useEffect, useState } from 'react'
+import { forwardRef, Suspense, useEffect, useState } from 'react'
 import AllProducts from '@/components/AllProducts'
-import type { Prisma } from '@/generated/prisma/client'
+// import type { Prisma } from '@/generated/prisma/client'
+import { Prisma } from '@prisma/client'
 import { useRouter } from 'next/navigation'
 import SkeletonMazouList from '@/components/SkeletonMazouList'
 import { HomeBigTitle } from '@/components/mazouComponent'
@@ -48,7 +49,9 @@ export default function Home() {
       <section className="flex flex-col gap-6 px-4 pb-10 md:pb-10 pt-[120px] lg:pt-[30px] items-center">
         <HomeBigTitle />
         <div className="mt-3 md:mt-7">
-          <SearchInput onQueryChange={setQueryParams} />
+          <Suspense fallback={null}>
+            <SearchInput onQueryChange={setQueryParams} />
+          </Suspense>
         </div>
       </section>
 

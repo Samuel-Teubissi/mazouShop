@@ -1,10 +1,11 @@
 // actions/tags.ts
 'use server'
-import { PrismaClient } from '@/generated/prisma'
+// import { PrismaClient } from '@/generated/prisma'
+import prisma from '@/lib/prisma'
 
 // 👈 Indique à Next.js que toutes les fonctions de ce fichier sont des Server Actions
 
-const prisma = new PrismaClient()
+// const prisma = new PrismaClient()
 
 /**
  * Récupère tous les labels de tags uniques de la base de données.
