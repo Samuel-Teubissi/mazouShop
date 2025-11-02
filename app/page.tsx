@@ -48,6 +48,7 @@ export default function Home() {
       setLoadingProducts(false)
     } catch (err) {
       console.error('Erreur de fillCart:', err)
+      setLoadingProducts(false)
     }
     // .finally(() => setLoadingProducts(false))
   }

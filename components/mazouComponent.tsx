@@ -44,14 +44,14 @@ const HomeBigTitle_Memo = () => {
 
   return (
     <>
-      <div className="inline-block max-w-xl text-center justify-center flex">
+      <div className="max-w-2xl text-center justify-center flex">
         <MotionBox
           variants={mzAnimateTitle}
           initial={'start'}
           whileInView={'end'}
         >
           <span className={title({ size: 'lg' })}>Bienvenue sur&nbsp;</span>
-          <span className="bg-gradient-to-br from-[#E44E4E] to-[#831f16] bg-clip-text text-transparent text-5xl lg:text-7xl tracking-tight inline font-black">
+          <span className="bg-gradient-to-br from-[#E44E4E] to-[#831f16] bg-clip-text text-transparent text-6xl lg:text-7xl tracking-tight inline font-black">
             Mazou&nbsp;
           </span>
         </MotionBox>

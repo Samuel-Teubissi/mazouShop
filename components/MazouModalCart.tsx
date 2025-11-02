@@ -145,12 +145,14 @@ export const MazouModalCart = ({
                             {formatPrice(item.new_price)} F
                           </span>
                           <div className="flex items-center gap-1 min-w-fit text-gray-700 hover:text-brand-primary-400 dark:text-gray-400 dark:hover:text-brand-primary-400">
-                            <Trash2Icon />
                             <button
                               onClick={() => removeCartProduct(item.id)}
-                              className="hidden sm:inline-block appearance-none"
+                              className="appearance-none"
                             >
-                              Retirer du panier
+                              <Trash2Icon />
+                              <span className="hidden sm:inline-block">
+                                Retirer du panier
+                              </span>
                             </button>
                           </div>
                         </div>

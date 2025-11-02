@@ -14,6 +14,7 @@ import prisma from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import { useCart } from '@/lib/useCart'
 import { mzToast } from '@/lib/utils'
+import { MazouBreadcrumbs } from '@/components/MazouBreadcrumbs'
 // import Breadcrumbs from '@mui/material/Breadcrumbs'
 // import Typography from '@mui/material/Typography'
 // import Link from '@mui/material/Link'
@@ -91,14 +92,8 @@ export default async function Page({
 
   return (
     <>
-      <div className="text-small text-gray-700 py-3 px-6 max-w-6xl mx-auto box-border dark:text-dark-text mt-[80px] lg:mt-auto">
-        <Link
-          href="/"
-          title="Mazou Homepage"
-          className="hover:text-brand-primary-400"
-        >
-          {'<'} Retourner à l'acceuil
-        </Link>
+      <div className="text-small text-gray-700 py-3 max-w-6xl mx-auto box-border dark:text-dark-text mt-[80px] lg:mt-auto">
+        <MazouBreadcrumbs />
       </div>
       <div className="mz_container">
         <div className="mz_container-body mz_container-resp">

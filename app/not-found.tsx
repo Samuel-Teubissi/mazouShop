@@ -6,8 +6,8 @@ import { Button } from '@heroui/button'
 
 export default function NotFound() {
   return (
-    <div className="mz_container-body px-3 mb-8 pt-[120px]">
-      <div className="min-h-75 py-3 w-full flex flex-col justify-center items-center bg-gray-200/40 dark:bg-dark-div gap-2">
+    <div className="mz_container-body mb-8 pt-[120px]">
+      <div className="min-h-75 py-10 w-full flex flex-col justify-center items-center bg-gray-200 dark:bg-dark-div gap-2">
         <TriangleAlertIcon strokeWidth={1.5} width={100} height={100} />
         <h1 className="text-4xl font-bold mb-2">Page introuvable</h1>
         <p className="text-gray-500 mb-6">Il semble que tu sois perdu...</p>
@@ -17,7 +17,13 @@ export default function NotFound() {
         >
           Retour à l'accueil
         </Link> */}
-        <Button as={Link} href="/" variant="flat" color="default">
+        <Button
+          as={Link}
+          href="/"
+          variant="bordered"
+          color="default"
+          className="border border-gray-500"
+        >
           Retour à l'accueil
         </Button>
       </div>

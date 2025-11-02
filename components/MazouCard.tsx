@@ -141,7 +141,7 @@ export default function MazouCard(props: { Item: Product }) {
           <Button
             color="default"
             // className="bg-gray-200/80 hover:bg-brand-primary-500 dark:text-white w-full sm:w-auto flex-1 dark:text-white dark:hover:border-brand-primary-400 dark:bg-dark-btn dark:hover:bg-brand-primary-500/70 opacity-100 hover:opacity-100 text-black hover:text-white"
-            className={`${isAdded ? 'bg-gray-200/80 dark:bg-dark-btn' : 'bg-brand-primary-500/20 dark:bg-dark-div2'} hover:bg-brand-primary-500 dark:text-white w-full sm:w-auto flex-1 dark:hover:border-brand-primary-400 dark:hover:bg-brand-primary-500/70 opacity-100 hover:opacity-100 text-black hover:text-white`}
+            className={`${isAdded ? 'bg-gray-200/80 dark:bg-dark-btn' : 'bg-brand-primary-500/20 dark:bg-dark-div2'} hover:bg-brand-primary-500 dark:text-white w-full sm:w-auto flex-1 dark:hover:border-brand-primary-400 dark:hover:bg-brand-primary-500/70 opacity-100 hover:opacity-100 text-gray-800 hover:text-white`}
             variant="flat"
             radius="sm"
             onPress={handleAdd}
