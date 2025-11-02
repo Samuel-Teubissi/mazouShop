@@ -41,7 +41,7 @@ export const Modal = () => {
               hoverBkg: true,
               border: true,
             }),
-            'min-w-auto mz_dark-btn rounded-lg !bg-gray-100/50 dark:!bg-dark-btn',
+            'min-w-auto mz_dark-btn rounded-lg mz_btn-header',
           )}
           startContent={<ShoppingCart className="w-4 h-4" />}
           onPress={() => onOpen()}

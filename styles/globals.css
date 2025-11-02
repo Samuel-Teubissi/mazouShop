@@ -53,6 +53,9 @@
 .mz_dark-btn {
   @apply text-black hover:text-white bg-white/80 hover:bg-brand-primary-500 dark:bg-dark-btn dark:text-white dark:hover:border-brand-primary-400 dark:hover:bg-brand-primary-500/70 opacity-100 hover:opacity-100;
 }
+.mz_btn-header {
+  @apply bg-gray-100/50 hover:bg-gray-200/50 dark:bg-dark-btn hover:text-gray-700 dark:hover:text-white;
+}
 
 .mz_btn-submit {
   @apply bg-brand-primary-500 hover:bg-brand-primary-400 uppercase font-bold text-white hover:opacity-100;
