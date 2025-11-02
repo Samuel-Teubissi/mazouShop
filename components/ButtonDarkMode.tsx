@@ -84,7 +84,7 @@ export const ButtonDarkMode = () => {
             hoverBkg: true,
             border: true,
           }),
-          'min-w-auto mz_dark-btn rounded-lg z-50',
+          'min-w-auto mz_dark-btn rounded-lg z-50 !bg-gray-100/50 dark:!bg-dark-btn',
         )}
         // onChange={handleDarkMode}
         onClick={handleDarkMode}

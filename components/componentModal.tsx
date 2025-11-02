@@ -22,13 +22,13 @@ export const Modal = () => {
   // const [loadingCartProducts, setLoadingCartProducts] = useState(true)
 
   return (
-    <div className="relative">
+    <div>
       <Badge
         color="danger"
         content={cart.length}
         isInvisible={cart.length < 1}
         size="md"
-        // shape="circle"
+        shape="circle"
       >
         <Button
           // as={Link}
@@ -41,7 +41,7 @@ export const Modal = () => {
               hoverBkg: true,
               border: true,
             }),
-            'min-w-auto mz_dark-btn rounded-lg relative',
+            'min-w-auto mz_dark-btn rounded-lg !bg-gray-100/50 dark:!bg-dark-btn',
           )}
           startContent={<ShoppingCart className="w-4 h-4" />}
           onPress={() => onOpen()}

@@ -1,7 +1,7 @@
 import { Image } from '@heroui/image'
 import { cn, formatPrice } from '@/config/utils'
 import Produits from '../app/dataMazou.json'
-import { Link } from '@heroui/link'
+// import { Link } from '@heroui/link'
 import { mz_button as buttonStyles } from '@/components/primitives'
 import { Button } from '@heroui/button'
 import {
@@ -14,6 +14,7 @@ import { useCart } from '@/lib/useCart'
 import { mzToast } from '@/lib/utils'
 import { CartProduct } from '@/types/useCartType'
 import { useMemo } from 'react'
+import Link from 'next/link'
 // import { useCartStore } from '@/lib/cartStore'
 
 interface Product {
@@ -94,7 +95,7 @@ export default function MazouCard(props: { Item: Product }) {
   // }
 
   return (
-    <div className="w-full border border-transparent mz_trans hover:border-brand-primary-400/50 md:shadow-small rounded-large text-foreground relative dark:bg-dark-div bg-white max-w-[300px]">
+    <div className="w-full border border-transparent mz_trans hover:border-brand-primary-400/50 md:shadow-small rounded-large text-foreground relative dark:bg-dark-div bg-white max-w-[300px] h-full">
       <div className="absolute flex flex-col top-1/3 -left-2 gap-1 font-bold text-lg z-10">
         {item.old_price && (
           <span className="line-through mz_priceBand bg-gray-400/75 text-medium dark:text-black/90">
@@ -107,25 +108,31 @@ export default function MazouCard(props: { Item: Product }) {
           {formatPrice(item.new_price)} F
         </span>
       </div>
-      <div className="relative overflow-hidden rounded-t-large z-0">
-        <Image
-          isZoomed
-          alt={item.title}
-          radius="none"
-          className="object-cover w-full h-[250]"
-          src={item.images[0]}
-          width={418}
-          height={250}
-        />
-      </div>
-      <div className="md:items-center flex flex-col px-2 py-2 md:px-3 w-full">
+      <Link
+        // href={'/product/' + item.id + '?categorie=' + item.product_category}
+        href={'/product/' + item.id}
+        className="w-full h-full"
+      >
+        <div className="relative overflow-hidden rounded-t-large z-0">
+          <Image
+            isZoomed
+            alt={item.title}
+            radius="none"
+            className="object-cover w-full h-[250]"
+            src={item.images[0]}
+            width={418}
+            height={250}
+          />
+        </div>
+      </Link>
+      <div className="md:items-center flex flex-col px-2 py-2 md:px-3 w-full h-36 justify-between">
         <div className="py-2 md:py-5 md:px-2 font-bold text-center dark:text-dark-text">
           <Link
             // href={'/product/' + item.id + '?categorie=' + item.product_category}
             href={'/product/' + item.id}
             className="text-inherit"
           >
-            <span className="line-clamp-1" title={item.title}>
+            <span className="line-clamp-2" title={item.title}>
               {item.title}
             </span>
           </Link>
@@ -134,7 +141,7 @@ export default function MazouCard(props: { Item: Product }) {
           <Button
             color="default"
             // className="bg-gray-200/80 hover:bg-brand-primary-500 dark:text-white w-full sm:w-auto flex-1 dark:text-white dark:hover:border-brand-primary-400 dark:bg-dark-btn dark:hover:bg-brand-primary-500/70 opacity-100 hover:opacity-100 text-black hover:text-white"
-            className={`${isAdded ? 'bg-gray-200/80 dark:bg-dark-btn' : 'bg-brand-primary-500/20 dark:bg-dark-div2'} hover:bg-brand-primary-500 dark:text-white w-full sm:w-auto flex-1 dark:text-white dark:hover:border-brand-primary-400 dark:hover:bg-brand-primary-500/70 opacity-100 hover:opacity-100 text-black hover:text-white`}
+            className={`${isAdded ? 'bg-gray-200/80 dark:bg-dark-btn' : 'bg-brand-primary-500/20 dark:bg-dark-div2'} hover:bg-brand-primary-500 dark:text-white w-full sm:w-auto flex-1 dark:hover:border-brand-primary-400 dark:hover:bg-brand-primary-500/70 opacity-100 hover:opacity-100 text-black hover:text-white`}
             variant="flat"
             radius="sm"
             onPress={handleAdd}

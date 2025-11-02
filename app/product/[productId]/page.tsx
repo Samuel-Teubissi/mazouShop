@@ -84,8 +84,10 @@ export default async function Page({
   // const isAdded = !!isInCart
 
   const zapMessage =
-    'Bonjour je viens du site Mazou et je suis intéressé par le porduit ' +
-    product.title
+    'Bonjour je viens du site Mazou et je suis intéressé par le porduit : \n\n' +
+    product.title +
+    ' : ' +
+    product.new_price
 
   return (
     <>
